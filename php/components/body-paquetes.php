@@ -1,26 +1,7 @@
 <div class="container">
-  <div class="row mt-2">
-    <div class="col p-2">
-      <div class="header col-12 bg-white rounded shadow-sm py-2 px-3 d-flex justify-content-end">
-        <div class="dropdown">
-          <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class='bx bx-user'></i>
-          </button>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" href="#">Items</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Items</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Items</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php
+    include('header.php');
+  ?>
   <div class="row mt-2">
     <div class="col-12 p-2">
       <div class="container header bg-white rounded p-2 shadow-sm">
@@ -108,8 +89,8 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12 overflow-auto" style="max-height: 405px;">
-              <table class="table table-sm table-hover bordered">
+            <div class="col-12 overflow-auto" style="max-height: 395px;">
+              <table class="table table-hover bordered">
                 <thead class="table-light">
                   <tr>
                     <th scope="col">#</th>
@@ -217,58 +198,54 @@
 <!-- Formulario del modal -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Creacion - Contrato de paquete</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Cliente:</label>
-
-            <div class="d-flex">
-              <input type="text" class="form-control me-2" id="recipient-name">
-              <!-- El cliente si no existe, tendra que crear un nuevo cliente -->
-              <button class="btn btn-outline-primary">
-                <i class='bx bx-message-square-add'></i>
-              </button>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Creacion - Contrato de paquete</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
-            <!-- Tabla de busqueda del cliente -->
-
-            <div class="mb-3">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Cliente</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Selecionar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Ebay</td>
-                    <td>Empresa</td>
-                    <td class="text-center">
-                      <button class="btn btn-outline-primary">
-                        <i class='bx bx-send'></i>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Cliente</label>
+                    <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Juan Perez">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Paquete</label>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option selected>Selecione una opcion</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Tecnico a asignar</label>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option selected>Selecione una opcion</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label for="exampleFormControlInput1" class="form-label">Fecha inicio</label>
+                        <input type="date" class="form-control form-control-sm" id="exampleFormControlInput1">
+                    </div>
+                    <div class="col">
+                        <label for="exampleFormControlInput1" class="form-label">Fecha final</label>
+                        <input type="date" class="form-control form-control-sm" id="exampleFormControlInput1">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Horas a contratar extra</label>
+                    <input type="number" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="0">
+                </div>
             </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Finalizar</button>
-      </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Finalizar</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

@@ -11,8 +11,8 @@
     </li>
     <li class="menu-item px-3 d-flex">
       <a href="./paquetes.php">
-        <i class='bx bx-package me-2'></i>
-        Paquetes
+        <i class='bx bx-briefcase-alt-2 me-2'></i>
+        Contratos
       </a>
     </li>
     <li class="menu-item px-3 d-flex">
@@ -22,7 +22,7 @@
       </a>
     </li>
     <li class="menu-item px-3 d-flex">
-      <a href="">
+      <a href="./clientes.php">
         <i class='bx bx-user me-2'></i>
         Clientes
       </a>
