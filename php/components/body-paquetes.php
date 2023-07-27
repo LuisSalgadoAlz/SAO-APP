@@ -89,7 +89,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12 overflow-auto" style="max-height: 395px;">
+            <div class="col-12 overflow-auto" style="max-height: 405px;">
               <table class="table table-hover bordered">
                 <thead class="table-light">
                   <tr>
@@ -198,54 +198,55 @@
 <!-- Formulario del modal -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Creacion - Contrato de paquete</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Cliente</label>
-                    <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Juan Perez">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Paquete</label>
-                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected>Selecione una opcion</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Tecnico a asignar</label>
-                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected>Selecione una opcion</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-                <div class="mb-3 row">
-                    <div class="col">
-                        <label for="exampleFormControlInput1" class="form-label">Fecha inicio</label>
-                        <input type="date" class="form-control form-control-sm" id="exampleFormControlInput1">
-                    </div>
-                    <div class="col">
-                        <label for="exampleFormControlInput1" class="form-label">Fecha final</label>
-                        <input type="date" class="form-control form-control-sm" id="exampleFormControlInput1">
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Horas a contratar extra</label>
-                    <input type="number" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="0">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Finalizar</button>
-            </div>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Creacion - Contrato de paquete</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Cliente</label>
+          <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1"
+            placeholder="Juan Perez">
         </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Paquete</label>
+          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+            <option selected>Selecione una opcion</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Tecnico a asignar</label>
+          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+            <option selected>Selecione una opcion</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <div class="mb-3 row">
+          <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Fecha inicio</label>
+            <input type="date" class="form-control form-control-sm" id="exampleFormControlInput1">
+          </div>
+          <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Fecha final</label>
+            <input type="date" class="form-control form-control-sm" id="exampleFormControlInput1">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Horas a contratar extra</label>
+          <input type="number" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="0">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Finalizar</button>
+      </div>
     </div>
+  </div>
 </div>

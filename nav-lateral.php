@@ -16,7 +16,7 @@
       </a>
     </li>
     <li class="menu-item px-3 d-flex">
-      <a href="">
+      <a href="./tecnicos.php">
         <i class='bx bx-wrench me-2'></i>
         Tecnicos
       </a>

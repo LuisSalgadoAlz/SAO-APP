@@ -1,27 +1,27 @@
-::root{
-    --bg-color: gray;
+::root {
+  --bg-color: gray;
 }
 
-div.nav-container{
-    background: white;
-    height: 100vh;
+div.nav-container {
+  background: white;
+  height: 100vh;
 }
 
-div.body-container{
-    height: 100vh;
-    background: rgba(128, 128, 128, 0.185);
+div.body-container {
+  height: 100vh;
+  background: rgba(128, 128, 128, 0.185);
 }
 
-ul.menu{
-    display: list-item;
-    text-decoration: none;
-    list-style: none;
-    padding-left: 0!important;
+ul.menu {
+  display: list-item;
+  text-decoration: none;
+  list-style: none;
+  padding-left: 0 !important;
 }
 
-ul.menu li a{
-    text-decoration: none;
-    color: gray;
+ul.menu li a {
+  text-decoration: none;
+  color: gray;
 }
 
 .table-scroll::-webkit-scrollbar {
@@ -29,20 +29,24 @@ ul.menu li a{
 }
 
 .table-scroll::-webkit-scrollbar-thumb {
-    background-color: #88888836; /* Color del fondo del pulgar */
-    border-radius: 2px; /* Borde redondeado del pulgar */
+  background-color: #88888836; /* Color del fondo del pulgar */
+  border-radius: 2px; /* Borde redondeado del pulgar */
 }
 
 .table-scroll::-webkit-scrollbar-thumb:hover {
-    background-color: #55555521; /* Color del pulgar cuando se pasa el mouse sobre él */
+  background-color: #55555521; /* Color del pulgar cuando se pasa el mouse sobre él */
 }
 
 .table-scroll::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Color del fondo de la barra de desplazamiento */
-    border-radius: 4px; /* Borde redondeado del fondo de la barra */
+  background-color: #f1f1f1; /* Color del fondo de la barra de desplazamiento */
+  border-radius: 4px; /* Borde redondeado del fondo de la barra */
 }
 
-span.subtitle-contratos{
-    color: grey!important;
-    font-size: 0.9rem;
+span.subtitle-contratos {
+  color: grey !important;
+  font-size: 0.9rem;
+}
+
+span.text-minimal {
+  font-size: 0.75rem !important;
 }
