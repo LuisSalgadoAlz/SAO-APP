@@ -89,7 +89,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12 overflow-auto" style="max-height: 405px;">
+            <div class="col-12 overflow-auto" style="max-height: 395px;">
               <table class="table table-hover bordered">
                 <thead class="table-light">
                   <tr>
