@@ -34,13 +34,7 @@
       </a>
     </li>
     <li class="menu-item px-3 d-flex">
-      <a href="">
-        <i class='bx bx-calendar-alt me-2'></i>
-        Calendario
-      </a>
-    </li>
-    <li class="menu-item px-3 d-flex">
-      <a href="">
+      <a href="./servicios.php">
         <i class='bx bx-git-repo-forked me-2'></i>
         Servicios
       </a>
