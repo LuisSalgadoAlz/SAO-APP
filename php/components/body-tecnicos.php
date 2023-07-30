@@ -28,9 +28,9 @@
             <span class="subtitle-contratos">Tecnicos ocupados</span>
           </div>
           <div class="col-3 d-flex justify-content-center align-items-center flex-column">
-            <button class="btn d-flex gap-2 align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button class="btn d-flex gap-2 align-items-center" data-bs-toggle="modal" data-bs-target="#tecnicosModal">
               <i class='bx bx-message-square-add'></i>
-              <span class="subtitle-contratos">Nuevo paquete</span>
+              <span class="subtitle-contratos">Nuevo tecnico</span>
             </button>
           </div>
         </div>
@@ -44,7 +44,7 @@
           <div class="row mb-3">
             <div class="col-4">
               <span class="fw-semibold">
-                Estado de los paquetes
+                Gestion de tecnicos
               </span>
             </div>
             <div class="col-8 d-flex">
@@ -252,6 +252,66 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="tecnicosModal" tabindex="-1" aria-labelledby="tecnivosModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Creacion - Nuevo tecnico</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 row">
+          <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+            <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Juan">
+          </div>
+          <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+            <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Perez">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Area de especializacion</label>
+          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+            <option selected>Selecione una opcion</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Fecha de nacimiento</label>
+          <input type="date" class="form-control form-control-sm" id="exampleFormControlInput1">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Fecha de contratacion</label>
+          <input type="date" class="form-control form-control-sm" id="exampleFormControlInput1">
+        </div>
+        <div class="mb-3 row">
+          <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Salario</label>
+            <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Ejemplo: 1200 Lps">
+          </div>
+          <div class="col">
+            <!-- Tentativa -->
+            <label for="exampleFormControlInput1" class="form-label">Horario</label>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+              <option selected>Selecione una opcion</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Finalizar</button>
       </div>
     </div>
   </div>
