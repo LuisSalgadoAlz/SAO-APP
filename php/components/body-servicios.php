@@ -126,7 +126,7 @@
                                         <td class="py-3">1</td>
                                         <td class="py-3">1,200 Lps</td>
                                         <td class="py-3">
-                                        <button class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></button>
+                                        <a href="./paquetes-edits.php" class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></a>
                                         <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
                                         </td>
                                     </tr>
