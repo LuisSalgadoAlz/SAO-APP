@@ -90,7 +90,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col overflow-auto table-scroll" style="height: 62vh">
-                        <table class="table table-hover bordered">
+                        <table class="table table-hover table-borderless">
                             <thead class="table-light">
                                 <tr>
                                     <th scope="col">#</th>
@@ -101,6 +101,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td class="py-3">1</td>
+                                    <td class="py-3">Mouse</td>
+                                    <td class="py-3">12</td>
+                                    <td class="py-3">120 Lps</td>
+                                    <td class="py-3">
+                                    <a href="./contratosdetalles.php" class="btn btn-warning btn-sm" ><i class='bx bx-edit'></i></a>
+                                    <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td class="py-3">1</td>
                                     <td class="py-3">Mouse</td>
