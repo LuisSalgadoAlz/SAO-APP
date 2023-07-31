@@ -109,7 +109,7 @@
                       <span class="bg-success-subtle text-emphasis-success rounded px-1">Finalizado</span>
                     </td>
                     <td class="py-3">
-                      <button class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></button>
+                      <a href="./contratosdetalles.php" class="btn btn-warning btn-sm" ><i class='bx bx-edit'></i></a>
                       <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
                     </td>
                   </tr>
@@ -237,10 +237,6 @@
             <label for="exampleFormControlInput1" class="form-label">Fecha final</label>
             <input type="date" class="form-control form-control-sm" id="exampleFormControlInput1">
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Horas a contratar extra</label>
-          <input type="number" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="0">
         </div>
       </div>
       <div class="modal-footer">
