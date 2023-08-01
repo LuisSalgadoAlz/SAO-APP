@@ -40,7 +40,7 @@
       </a>
     </li>
     <li class="menu-item px-3 d-flex">
-      <a href="">
+      <a href="./facturacion.php">
         <i class='bx bxs-report me-2'></i>
         Facturacion
       </a>
