@@ -1,6 +1,6 @@
 <div class="container">
   <?php
-    include('header.php');
+  include('header.php');
   ?>
   <div class="row mt-2">
     <div class="col-12 p-2">
@@ -21,7 +21,8 @@
             <span class="subtitle-contratos">Total visitas</span>
           </div>
           <div class="col-4 d-flex justify-content-center align-items-center flex-column">
-            <button class="btn d-flex gap-2 align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button class="btn d-flex gap-2 align-items-center agregar-paquete" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">
               <i class='bx bx-message-square-add'></i>
               <span class="subtitle-contratos">Nuevo paquete</span>
             </button>
@@ -109,7 +110,7 @@
                       <span class="bg-success-subtle text-emphasis-success rounded px-1">Finalizado</span>
                     </td>
                     <td class="py-3">
-                      <a href="./contratosdetalles.php" class="btn btn-warning btn-sm" ><i class='bx bx-edit'></i></a>
+                      <a href="./contratosdetalles.php" class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></a>
                       <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
                     </td>
                   </tr>
@@ -196,53 +197,52 @@
 </div>
 
 <!-- Formulario del modal -->
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Creacion - Contrato de paquete</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Cliente</label>
-          <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1"
-            placeholder="Juan Perez">
+<form id="agregarNuevoPaquete">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Creacion - Contrato de paquete</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Paquete</label>
-          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-            <option selected>Selecione una opcion</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Tecnico a asignar</label>
-          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-            <option selected>Selecione una opcion</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-        <div class="mb-3 row">
-          <div class="col">
-            <label for="exampleFormControlInput1" class="form-label">Fecha inicio</label>
-            <input type="date" class="form-control form-control-sm" id="exampleFormControlInput1">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Cliente</label>
+            <input type="text" class="form-control form-control-sm cliente-paquete" id="exampleFormControlInput1"
+              placeholder="Juan Perez" name="cliente">
           </div>
-          <div class="col">
-            <label for="exampleFormControlInput1" class="form-label">Fecha final</label>
-            <input type="date" class="form-control form-control-sm" id="exampleFormControlInput1">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Paquete</label>
+            <select class="form-select form-select-sm combo-opcion-paquete" aria-label=".form-select-sm example"
+              name="paquete">
+              <option selected>Selecione una opcion</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Tecnico a asignar</label>
+            <select class="form-select form-select-sm combo-tecnico-asignar" aria-label=".form-select-sm example"
+              name="tecnico">
+              <option selected>Selecione una opcion</option>
+            </select>
+          </div>
+          <div class="mb-3 row">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label">Fecha inicio</label>
+              <input type="date" class="form-control form-control-sm fecha-inicio" id="exampleFormControlInput1"
+                name="fechaInicio">
+            </div>
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label">Fecha final</label>
+              <input type="date" class="form-control form-control-sm fecha-final" id="exampleFormControlInput1"
+                name="fechaFinal">
+            </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Finalizar</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Finalizar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>

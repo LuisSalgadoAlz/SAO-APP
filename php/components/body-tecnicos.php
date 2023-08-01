@@ -1,6 +1,6 @@
 <div class="container">
   <?php
-    include('header.php');
+  include('header.php');
   ?>
   <div class="row mt-2">
     <div class="col-12 p-2">
@@ -179,7 +179,7 @@
                   <span class="fw-semibold">3</span>
                   <span class="text-body-tertiary">Contratos</span>
                 </div>
-              </div>  
+              </div>
             </div>
             <div class="col-12 mt-2">
               <div class="d-flex gap-2 border border-light-subtle rounded shadow-sm p-1">
@@ -198,7 +198,7 @@
                   <span class="fw-semibold">3</span>
                   <span class="text-body-tertiary">Contratos</span>
                 </div>
-              </div>  
+              </div>
             </div>
             <div class="col-12 mt-2">
               <div class="d-flex gap-2 border border-light-subtle rounded shadow-sm p-1">
@@ -217,7 +217,7 @@
                   <span class="fw-semibold">3</span>
                   <span class="text-body-tertiary">Contratos</span>
                 </div>
-              </div>  
+              </div>
             </div>
           </div>
         </div>
@@ -248,7 +248,7 @@
                   <span class="fw-semibold">12</span>
                   <span class="text-body-tertiary">servicios</span>
                 </div>
-              </div>  
+              </div>
             </div>
           </div>
         </div>
@@ -256,63 +256,65 @@
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="tecnicosModal" tabindex="-1" aria-labelledby="tecnivosModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Creacion - Nuevo tecnico</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-3 row">
-          <div class="col">
-            <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-            <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Juan">
+<form id="form-tecnico-nuevo">
+  <div class="modal fade" id="tecnicosModal" tabindex="-1" aria-labelledby="tecnivosModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Creacion - Nuevo tecnico</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3 row">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+              <input type="text" class="form-control form-control-sm nombre-tecnico" name="nombre-tecnico"
+                id="exampleFormControlInput1" placeholder="Juan">
+            </div>
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+              <input type="text" class="form-control form-control-sm apellido-tecnico" name="apellido-tecnico"
+                id="exampleFormControlInput1" placeholder="Perez">
+            </div>
           </div>
-          <div class="col">
-            <label for="exampleFormControlInput1" class="form-label">Apellido</label>
-            <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Perez">
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Area de especializacion</label>
-          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-            <option selected>Selecione una opcion</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Fecha de nacimiento</label>
-          <input type="date" class="form-control form-control-sm" id="exampleFormControlInput1">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Fecha de contratacion</label>
-          <input type="date" class="form-control form-control-sm" id="exampleFormControlInput1">
-        </div>
-        <div class="mb-3 row">
-          <div class="col">
-            <label for="exampleFormControlInput1" class="form-label">Salario</label>
-            <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Ejemplo: 1200 Lps">
-          </div>
-          <div class="col">
-            <!-- Tentativa -->
-            <label for="exampleFormControlInput1" class="form-label">Horario</label>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Area de especializacion</label>
+            <select class="form-select form-select-sm combo-area-e especializacion-tecnico"
+              aria-label=".form-select-sm example" name="area-especializacion">
               <option selected>Selecione una opcion</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
             </select>
           </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Fecha de nacimiento</label>
+            <input type="date" class="form-control form-control-sm fechaNacimiento-tecnico"
+              id="exampleFormControlInput1" name="fecha-nacimiento">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Fecha de contratacion</label>
+            <input type="date" class="form-control form-control-sm fechaContratacion-tecnico"
+              id="exampleFormControlInput1" name="fecha-contratacion">
+          </div>
+          <div class="mb-3 row">
+            <div class="col">
+              <label for="exampleFormControlInput1" class="form-label">Salario</label>
+              <input type="text" class="form-control form-control-sm salario-tecnico" id="exampleFormControlInput1"
+                name="salario" placeholder="Ejemplo: 1200 Lps">
+            </div>
+            <div class="col">
+              <!-- Tentativa -->
+              <label for="exampleFormControlInput1" class="form-label">Horario</label>
+              <select class="form-select form-select-sm combo-horario horario-tecnico"
+                aria-label=".form-select-sm example" name="horario">
+                <option selected>Selecione una opcion</option>
+              </select>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Finalizar</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Finalizar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>
