@@ -1,7 +1,7 @@
 <div class="container">
   <?php
-        include('header.php');
-    ?>
+  include('header.php');
+  ?>
   <div class="row mt-3">
     <div class="col-9 p-2">
       <div class="col bg-white rounded p-4 overflow-auto table-scroll" style="height: 83vh;max-height: 83vh; ">
@@ -23,7 +23,7 @@
           <div class="row mt-3">
             <!-- Tabla de clientes -->
             <div class="col">
-              <table class="table table-sm table-hover bordered">
+              <table class="table table-sm table-hover bordered table-clientes">
                 <thead class="thead-dark">
                   <tr>
                     <th>#</th>
@@ -33,77 +33,7 @@
                     <th>Accion</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">Cliente 1</td>
-                    <td class="py-3">cliente1@example.com</td>
-                    <td class="py-3">123-456-7890</td>
-                    <td class="py-3">
-                      <button class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></button>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">Cliente 1</td>
-                    <td class="py-3">cliente1@example.com</td>
-                    <td class="py-3">123-456-7890</td>
-                    <td class="py-3">
-                      <button class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></button>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">Cliente 1</td>
-                    <td class="py-3">cliente1@example.com</td>
-                    <td class="py-3">123-456-7890</td>
-                    <td class="py-3">
-                      <button class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></button>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">Cliente 1</td>
-                    <td class="py-3">cliente1@example.com</td>
-                    <td class="py-3">123-456-7890</td>
-                    <td class="py-3">
-                      <button class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></button>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">Cliente 1</td>
-                    <td class="py-3">cliente1@example.com</td>
-                    <td class="py-3">123-456-7890</td>
-                    <td class="py-3">
-                      <button class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></button>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">Cliente 1</td>
-                    <td class="py-3">cliente1@example.com</td>
-                    <td class="py-3">123-456-7890</td>
-                    <td class="py-3">
-                      <button class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></button>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">Cliente 1</td>
-                    <td class="py-3">cliente1@example.com</td>
-                    <td class="py-3">123-456-7890</td>
-                    <td class="py-3">
-                      <button class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></button>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
+                <tbody class="tbody-clientes">
                 </tbody>
               </table>
             </div>

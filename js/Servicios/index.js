@@ -79,6 +79,45 @@ function cargarComboBox() {
   xhrComboData.send(formData);
 }
 
+function LlenarTablaServicios() {
+  const tableBody = document.querySelector(".tbody-servicios");
+  const formData = new FormData();
+  formData.append("procedimiento", "vista");
+  // Realizar la petición AJAX para obtener los datos del combo box
+  const xhrComboData = new XMLHttpRequest();
+  xhrComboData.onreadystatechange = function () {
+    //console.log("Respuesta del servidor:", xhrComboData.responseText);
+    if (xhrComboData.readyState === 4 && xhrComboData.status === 200) {
+      //console.log(this.responseText);
+      const data = JSON.parse(xhrComboData.responseText);
+      data.forEach(item => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+                        <td class="py-3">${item.ID_servicio}</td>
+                        <td class="py-3">${item.Nombre}</td>
+                        <td class="py-3">${item.Precio}</td>
+                        <td class="py-3">
+                          <button class="btn btn-warning btn-sm">
+                            <i class="bx bx-edit"></i>
+                          </button>
+                          <button class="btn btn-danger btn-sm">
+                            <i class="bx bx-eraser"></i>
+                          </button>
+                        </td>
+                    `;
+        tableBody.appendChild(row);
+      });
+    }
+  };
+  xhrComboData.open(
+    "POST",
+    "./php/server/Servicios/apis_servicios.php?getComboData=true",
+    true
+  );
+  xhrComboData.send(formData);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   cargarComboBox();
+  LlenarTablaServicios();
 });

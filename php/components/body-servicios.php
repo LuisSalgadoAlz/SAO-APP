@@ -114,7 +114,6 @@
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Servicios</th>
-                    <th scope="col">Contratos</th>
                     <th scope="col">Precio</th>
                     <th scope="col">Accion</th>
                   </tr>
@@ -124,7 +123,6 @@
                     <td class="py-3">1</td>
                     <td class="py-3">Premier</td>
                     <td class="py-3">13</td>
-                    <td class="py-3">1</td>
                     <td class="py-3">1,200 Lps</td>
                     <td class="py-3">
                       <a href="./paquetes-edits.php" class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></a>
@@ -160,29 +158,16 @@
           </div>
           <div class="row">
             <div class="col-12 overflow-auto table-scroll" style="height: 47vh;">
-              <table class="table table-hover bordered">
+              <table class="table table-hover bordered table-servicios">
                 <thead class="table-light">
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Contratos</th>
-                    <th scope="col">Ventas</th>
                     <th scope="col">Precio</th>
                     <th scope="col">Accion</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">Reparacion preventiva</td>
-                    <td class="py-3">1</td>
-                    <td class="py-3">18</td>
-                    <td class="py-3">188 Lps</td>
-                    <td class="py-3">
-                      <button class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></button>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
+                <tbody class="tbody-servicios">
                 </tbody>
               </table>
             </div>
@@ -218,7 +203,7 @@
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Precio inicial</label>
             <input type="text" class="form-control form-control-sm precio-inicial-paquete" name="precio-i"
-              id="exampleFormControlInput1" placeholder="Precio del servicio inicial">
+              id="exampleFormControlInput1" placeholder="Precio del servicio inicial" readonly>
           </div>
         </div>
         <div class="modal-footer">

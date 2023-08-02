@@ -52,7 +52,7 @@ if (isset($_GET['getComboDataTecnico']) && $_GET['getComboDataTecnico'] === 'tru
 }
 
 if (isset($_GET['getComboDataCliente']) && $_GET['getComboDataCliente'] === 'true') {
-  $sql = "select * from vClientes";
+  $sql = "select * from vClientesCombo";
   $result = $conexion->query($sql);
 
   // Almacena los datos en un array
