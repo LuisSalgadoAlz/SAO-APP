@@ -50,3 +50,20 @@ if (isset($_GET['getComboDataTecnico']) && $_GET['getComboDataTecnico'] === 'tru
   // Devuelve los datos JSON
   echo $jsonData;
 }
+
+if (isset($_GET['getComboDataCliente']) && $_GET['getComboDataCliente'] === 'true') {
+  $sql = "select * from vClientes";
+  $result = $conexion->query($sql);
+
+  // Almacena los datos en un array
+  $data = array();
+  while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+    $data[] = $row;
+  }
+
+  // Convierte los datos a formato JSON
+  $jsonData = json_encode($data);
+
+  // Devuelve los datos JSON
+  echo $jsonData;
+}

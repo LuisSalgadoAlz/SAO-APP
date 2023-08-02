@@ -208,8 +208,18 @@
         <div class="modal-body">
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Cliente</label>
-            <input type="text" class="form-control form-control-sm cliente-paquete" id="exampleFormControlInput1"
-              placeholder="Juan Perez" name="cliente">
+            <div class="d-flex gap-1 mb-2">
+              <input type="text" class="form-control form-control-sm cliente-paquete" id="exampleFormControlInput1"
+                placeholder="Juan Perez" name="cliente">
+              <button class="btn btn-secondary btn-sm "><i class='bx bx-message-square-add'></i></button>
+            </div>
+            <div class="d-flex gap-1 mb-2">
+              <select class="form-select form-select-sm combo-cliente" aria-label=".form-select-sm example"
+                name="combo-cliente">
+                <option selected>Selecione una opcion</option>
+              </select>
+              <button class="btn btn-secondary btn-sm "><i class='bx bx-book-bookmark'></i></i></button>
+            </div>
           </div>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Paquete</label>
