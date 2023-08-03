@@ -47,4 +47,19 @@ if (isset($_GET['getComboData']) && $_GET['getComboData'] === 'true') {
   echo $jsonData;
 }
 
+if ($nombreProcedimiento === "spEliminarServicio") {
+  $id = $_POST['id'];
+  $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$id]);
+
+  if ($resultado) {
+    $response = array('success' => true, 'message' => 'Servicio eliminado exitosamente.');
+  } else {
+    $response = array('success' => false, 'message' => 'Error al eliminar el servicio.');
+  }
+
+  // Devolver la respuesta en formato JSON
+  header('Content-Type: application/json');
+  echo json_encode($response);
+}
+
 ?>
