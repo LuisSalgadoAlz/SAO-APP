@@ -209,7 +209,7 @@
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Cliente</label>
             <div class="d-flex gap-1 mb-2">
-              <input type="text" class="form-control form-control-sm cliente-paquete" id="exampleFormControlInput1"
+              <input type="text" class="form-control form-control-sm cliente-paquete" id="searchCliente"
                 placeholder="Juan Perez" name="cliente">
               <button class="btn btn-secondary btn-sm "><i class='bx bx-message-square-add'></i></button>
             </div>
