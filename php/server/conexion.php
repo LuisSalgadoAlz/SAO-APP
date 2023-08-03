@@ -11,7 +11,7 @@ class Conexion
       // Cambiar por el nombre de la base de datos
       "Uid" => "sa",
       // Cambiar por el usuario de la base de datos
-      "PWD" => "Jalea987" // Cambiar por la contraseña del usuario
+      "PWD" => "manedaisdsadnsd" // Cambiar por la contraseña del usuario
     );
 
     $this->conexion = sqlsrv_connect($serverName, $connectionOptions);
