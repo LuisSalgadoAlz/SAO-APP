@@ -96,7 +96,7 @@
                   <th scope="col">Accion</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="tbody-servicios">
                 <tr>
                   <td class="py-3">1</td>
                   <td class="py-3">Premier</td>
@@ -149,29 +149,28 @@
 </div>
 
 <!-- Formulario del modal -->
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar servicio</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Servicio</label>
-          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-            <option selected>Selecione una opcion</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
+<form id="form-agregar-servicio">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar servicio</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Finalizar</button>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Servicio</label>
+            <select class="form-select form-select-sm combo-servicios" aria-label=".form-select-sm example"
+              name="servicio">
+              <option selected>Selecione una opcion</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Finalizar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>

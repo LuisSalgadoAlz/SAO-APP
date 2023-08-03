@@ -3,11 +3,18 @@ function LlenarTablaServicios() {
   const formData = new FormData();
   formData.append("procedimiento", "vista");
 
-  // Realizar la petición AJAX para obtener los datos del combo box
-  const xhrComboData = new XMLHttpRequest();
-  xhrComboData.onreadystatechange = function () {
-    if (xhrComboData.readyState === 4 && xhrComboData.status === 200) {
-      const data = JSON.parse(xhrComboData.responseText);
+  // Realizar la solicitud a PHP mediante Fetch API
+  fetch("./php/server/Servicios/apis_servicios.php?getComboData=true", {
+    method: "POST",
+    body: formData,
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then(data => {
       data.forEach(item => {
         // Verificar si ya existe una fila con el mismo ID de servicio
         const existingRow = tableBody.querySelector(
@@ -17,47 +24,42 @@ function LlenarTablaServicios() {
         if (existingRow) {
           // Actualizar la fila existente
           existingRow.innerHTML = `
-            <td class="py-3">${item.ID_servicio}</td>
-            <td class="py-3">${item.Nombre}</td>
-            <td class="py-3">${item.Precio}</td>
-            <td class="py-3">
-              <button class="btn btn-warning btn-sm">
-                <i class="bx bx-edit"></i>
-              </button>
-              <button class="btn btn-danger btn-sm eliminar-btn" data-id=${item.ID_servicio}>
-                <i class="bx bx-eraser"></i>
-              </button>
-            </td>
-          `;
+          <td class="py-3">${item.ID_servicio}</td>
+          <td class="py-3">${item.Nombre}</td>
+          <td class="py-3">${item.Precio}</td>
+          <td class="py-3">
+            <button class="btn btn-warning btn-sm">
+              <i class="bx bx-edit"></i>
+            </button>
+            <button class="btn btn-danger btn-sm eliminar-btn" data-id=${item.ID_servicio}>
+              <i class="bx bx-eraser"></i>
+            </button>
+          </td>
+        `;
         } else {
           // Crear una nueva fila
           const row = document.createElement("tr");
           row.setAttribute("data-id", item.ID_servicio);
           row.innerHTML = `
-            <td class="py-3">${item.ID_servicio}</td>
-            <td class="py-3">${item.Nombre}</td>
-            <td class="py-3">${item.Precio}</td>
-            <td class="py-3">
-              <button class="btn btn-warning btn-sm">
-                <i class="bx bx-edit"></i>
-              </button>
-              <button class="btn btn-danger btn-sm eliminar-btn" data-id=${item.ID_servicio}>
-                <i class="bx bx-eraser"></i>
-              </button>
-            </td>
-          `;
+          <td class="py-3">${item.ID_servicio}</td>
+          <td class="py-3">${item.Nombre}</td>
+          <td class="py-3">${item.Precio}</td>
+          <td class="py-3">
+            <button class="btn btn-warning btn-sm">
+              <i class="bx bx-edit"></i>
+            </button>
+            <button class="btn btn-danger btn-sm eliminar-btn" data-id=${item.ID_servicio}>
+              <i class="bx bx-eraser"></i>
+            </button>
+          </td>
+        `;
           tableBody.appendChild(row);
         }
       });
-    }
-  };
-
-  xhrComboData.open(
-    "POST",
-    "./php/server/Servicios/apis_servicios.php?getComboData=true",
-    true
-  );
-  xhrComboData.send(formData);
+    })
+    .catch(error => {
+      console.error("Fetch error:", error);
+    });
 }
 
 function LlenarTablaPaquetes() {
@@ -65,13 +67,18 @@ function LlenarTablaPaquetes() {
   const formData = new FormData();
   formData.append("procedimiento", "vista");
 
-  // Realizar la petición AJAX para obtener los datos del combo box
-  const xhrComboData = new XMLHttpRequest();
-  xhrComboData.onreadystatechange = function () {
-    if (xhrComboData.readyState === 4 && xhrComboData.status === 200) {
-      const data = JSON.parse(xhrComboData.responseText);
+  fetch("./php/server/Servicios/apis_servicios.php?getDataTablePaquetes=true", {
+    method: "POST",
+    body: formData,
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then(data => {
       data.forEach(item => {
-        // Verificar si ya existe una fila con el mismo ID de servicio
         const existingRow = tableBody.querySelector(
           `tr[data-id="${item.PaqueteID}"]`
         );
@@ -79,21 +86,20 @@ function LlenarTablaPaquetes() {
         if (existingRow) {
           // Actualizar la fila existente
           existingRow.innerHTML = `
-            <td class="py-3">${item.PaqueteID}</td>
-            <td class="py-3">${item.Nombre}</td>
-            <td class="py-3">${item.Servicios}</td>
-            <td class="py-3">${item.Precio}</td>
-            <td class="py-3">
-            <a href="./paquetes-edits.php" class="btn btn-warning btn-sm">
+          <td class="py-3">${item.PaqueteID}</td>
+          <td class="py-3">${item.Nombre}</td>
+          <td class="py-3">${item.Servicios}</td>
+          <td class="py-3">${item.Precio}</td>
+          <td class="py-3">
+            <a href="./paquetes-edits.php" class="btn btn-warning btn-sm" data-id=${item.PaqueteID}>
                 <i class='bx bx-edit'></i>
             </a>
-              <button class="btn btn-danger btn-sm eliminar-btn" data-id=${item.PaqueteID}>
-                <i class="bx bx-eraser"></i>
-              </button>
-            </td>
-          `;
+            <button class="btn btn-danger btn-sm eliminar-btn" data-id=${item.PaqueteID}>
+              <i class="bx bx-eraser"></i>
+            </button>
+          </td>
+        `;
         } else {
-          // Crear una nueva fila
           const row = document.createElement("tr");
           row.setAttribute("data-id", item.PaqueteID);
           row.innerHTML = `
@@ -102,26 +108,32 @@ function LlenarTablaPaquetes() {
             <td class="py-3">${item.Servicios}</td>
             <td class="py-3">${item.Precio}</td>
             <td class="py-3">
-              <a href="./paquetes-edits.php" class="btn btn-warning btn-sm">
-                  <i class='bx bx-edit'></i>
+              <a href="#" class="btn btn-warning btn-sm editar-btn" data-id="${item.PaqueteID}">
+                <i class='bx bx-edit'></i>
               </a>
-              <button class="btn btn-danger btn-sm eliminar-btn" data-id=${item.PaqueteID}>
+              <button class="btn btn-danger btn-sm eliminar-btn" data-id="${item.PaqueteID}">
                 <i class="bx bx-eraser"></i>
               </button>
             </td>
           `;
+
           tableBody.appendChild(row);
         }
       });
-    }
-  };
 
-  xhrComboData.open(
-    "POST",
-    "./php/server/Servicios/apis_servicios.php?getDataTablePaquetes=true",
-    true
-  );
-  xhrComboData.send(formData);
+      // Agregar manejador de eventos a los botones de editar
+      const editButtons = document.querySelectorAll(".editar-btn");
+      editButtons.forEach(editButton => {
+        editButton.addEventListener("click", event => {
+          event.preventDefault();
+          const paqueteID = editButton.getAttribute("data-id");
+          window.location.href = `./paquetes-edits.php?paqueteID=${paqueteID}`;
+        });
+      });
+    })
+    .catch(error => {
+      console.error("Fetch error:", error);
+    });
 }
 
 function enviarFormulario(formularioId, procedimiento) {
@@ -131,21 +143,27 @@ function enviarFormulario(formularioId, procedimiento) {
   // Agregar otros campos o datos si es necesario
   formData.append("procedimiento", procedimiento);
 
-  // Realizar la solicitud a PHP mediante AJAX
-  const xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-      // La respuesta desde PHP (opcional)
-      //console.log(this.responseText);
+  // Realizar la solicitud a PHP mediante Fetch API
+  fetch("./php/server/Servicios/apis_servicios.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.text(); // Si se espera una respuesta de texto
+    })
+    .then(responseText => {
       if (formularioId == "form-Nuevo-Servicio") {
         LlenarTablaServicios();
       } else if (formularioId == "form-Nuevo-Paquete") {
         LlenarTablaPaquetes();
       }
-    }
-  };
-  xhttp.open("POST", "./php/server/Servicios/apis_servicios.php", true);
-  xhttp.send(formData);
+    })
+    .catch(error => {
+      console.error("Fetch error:", error);
+    });
 }
 
 // Manejar el evento de envío para cada formulario
@@ -186,20 +204,26 @@ function cargarComboBox() {
   const precioInicial = document.querySelector(".precio-inicial-paquete");
   const formData = new FormData();
   formData.append("procedimiento", "vista");
-  // Realizar la petición AJAX para obtener los datos del combo box
-  const xhrComboData = new XMLHttpRequest();
-  xhrComboData.onreadystatechange = function () {
-    if (xhrComboData.readyState === 4 && xhrComboData.status === 200) {
-      console.log(this.responseText);
-      const data = JSON.parse(xhrComboData.responseText);
 
-      // Agregar las opciones al combo box
-      for (let i = 0; i < data.length; i++) {
-        const option = document.createElement("option");
-        option.value = data[i].ID_servicio; // Valor del option será el ID del producto
-        option.text = data[i].Nombre; // Texto visible será el nombre del producto
-        comboBox.add(option);
+  // Realizar la petición Fetch para obtener los datos del combo box
+  fetch("./php/server/Servicios/apis_servicios.php?getComboData=true", {
+    method: "POST",
+    body: formData,
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
+      return response.json();
+    })
+    .then(data => {
+      // Agregar las opciones al combo box
+      data.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.ID_servicio; // Valor del option será el ID del producto
+        option.text = item.Nombre; // Texto visible será el nombre del producto
+        comboBox.add(option);
+      });
 
       comboBox.addEventListener("change", function () {
         const selectedValue = comboBox.value;
@@ -209,15 +233,10 @@ function cargarComboBox() {
           precioInicial.value = "";
         }
       });
-    }
-  };
-
-  xhrComboData.open(
-    "POST",
-    "./php/server/Servicios/apis_servicios.php?getComboData=true",
-    true
-  );
-  xhrComboData.send(formData);
+    })
+    .catch(error => {
+      console.error("Fetch error:", error);
+    });
 }
 
 function EliminarServicio() {
@@ -244,36 +263,34 @@ function EliminarServicio() {
           formData.append("procedimiento", "spEliminarServicio");
           formData.append("id", ID_servicio);
 
-          // Realizar la solicitud a PHP mediante AJAX
-          const xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function () {
-            if (this.readyState === 4) {
-              if (this.status === 200) {
-                // La respuesta desde PHP
-                const response = JSON.parse(this.responseText);
-                if (response.success) {
-                  Swal.fire(
-                    "¡Eliminado!",
-                    "El servicio ha sido eliminado.",
-                    "success"
-                  ).then(() => {
-                    // Actualizar la página o realizar las acciones necesarias
-                    location.reload();
-                  });
-                } else {
-                  Swal.fire(
-                    "Error",
-                    "No se pudo eliminar el servicio.",
-                    "error"
-                  );
-                }
-              } else {
-                Swal.fire("Error", "Error en la solicitud AJAX", "error");
+          // Realizar la solicitud a PHP mediante Fetch API
+          fetch("./php/server/Servicios/apis_servicios.php", {
+            method: "POST",
+            body: formData,
+          })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
               }
-            }
-          };
-          xhttp.open("POST", "./php/server/Servicios/apis_servicios.php", true);
-          xhttp.send(formData);
+              return response.json();
+            })
+            .then(response => {
+              if (response.success) {
+                Swal.fire(
+                  "¡Eliminado!",
+                  "El servicio ha sido eliminado.",
+                  "success"
+                ).then(() => {
+                  // Actualizar la página o realizar las acciones necesarias
+                  location.reload();
+                });
+              } else {
+                Swal.fire("Error", "No se pudo eliminar el servicio.", "error");
+              }
+            })
+            .catch(error => {
+              console.error("Fetch error:", error);
+            });
         }
       });
     }
@@ -304,36 +321,34 @@ function EliminarPaquete() {
           formData.append("procedimiento", "spEliminarPaquete");
           formData.append("id", ID_servicio);
 
-          // Realizar la solicitud a PHP mediante AJAX
-          const xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function () {
-            if (this.readyState === 4) {
-              if (this.status === 200) {
-                // La respuesta desde PHP
-                const response = JSON.parse(this.responseText);
-                if (response.success) {
-                  Swal.fire(
-                    "¡Eliminado!",
-                    "El paquete ha sido eliminado.",
-                    "success"
-                  ).then(() => {
-                    // Actualizar la página o realizar las acciones necesarias
-                    location.reload();
-                  });
-                } else {
-                  Swal.fire(
-                    "Error",
-                    "No se pudo eliminar el paquete.",
-                    "error"
-                  );
-                }
-              } else {
-                Swal.fire("Error", "Error en la solicitud AJAX", "error");
+          // Realizar la solicitud a PHP mediante Fetch API
+          fetch("./php/server/Servicios/apis_servicios.php", {
+            method: "POST",
+            body: formData,
+          })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
               }
-            }
-          };
-          xhttp.open("POST", "./php/server/Servicios/apis_servicios.php", true);
-          xhttp.send(formData);
+              return response.json();
+            })
+            .then(response => {
+              if (response.success) {
+                Swal.fire(
+                  "¡Eliminado!",
+                  "El paquete ha sido eliminado.",
+                  "success"
+                ).then(() => {
+                  // Actualizar la página o realizar las acciones necesarias
+                  location.reload();
+                });
+              } else {
+                Swal.fire("Error", "No se pudo eliminar el paquete.", "error");
+              }
+            })
+            .catch(error => {
+              console.error("Fetch error:", error);
+            });
         }
       });
     }
