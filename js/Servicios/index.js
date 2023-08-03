@@ -1,4 +1,66 @@
 // Función para enviar el formulario mediante AJAX
+function LlenarTablaServicios() {
+  const tableBody = document.querySelector(".tbody-servicios");
+  const formData = new FormData();
+  formData.append("procedimiento", "vista");
+
+  // Realizar la petición AJAX para obtener los datos del combo box
+  const xhrComboData = new XMLHttpRequest();
+  xhrComboData.onreadystatechange = function () {
+    if (xhrComboData.readyState === 4 && xhrComboData.status === 200) {
+      const data = JSON.parse(xhrComboData.responseText);
+      data.forEach(item => {
+        // Verificar si ya existe una fila con el mismo ID de servicio
+        const existingRow = tableBody.querySelector(
+          `tr[data-id="${item.ID_servicio}"]`
+        );
+
+        if (existingRow) {
+          // Actualizar la fila existente
+          existingRow.innerHTML = `
+            <td class="py-3">${item.ID_servicio}</td>
+            <td class="py-3">${item.Nombre}</td>
+            <td class="py-3">${item.Precio}</td>
+            <td class="py-3">
+              <button class="btn btn-warning btn-sm">
+                <i class="bx bx-edit"></i>
+              </button>
+              <button class="btn btn-danger btn-sm eliminar-btn" data-id=${item.ID_servicio}>
+                <i class="bx bx-eraser"></i>
+              </button>
+            </td>
+          `;
+        } else {
+          // Crear una nueva fila
+          const row = document.createElement("tr");
+          row.setAttribute("data-id", item.ID_servicio);
+          row.innerHTML = `
+            <td class="py-3">${item.ID_servicio}</td>
+            <td class="py-3">${item.Nombre}</td>
+            <td class="py-3">${item.Precio}</td>
+            <td class="py-3">
+              <button class="btn btn-warning btn-sm">
+                <i class="bx bx-edit"></i>
+              </button>
+              <button class="btn btn-danger btn-sm eliminar-btn" data-id=${item.ID_servicio}>
+                <i class="bx bx-eraser"></i>
+              </button>
+            </td>
+          `;
+          tableBody.appendChild(row);
+        }
+      });
+    }
+  };
+
+  xhrComboData.open(
+    "POST",
+    "./php/server/Servicios/apis_servicios.php?getComboData=true",
+    true
+  );
+  xhrComboData.send(formData);
+}
+
 function enviarFormulario(formularioId, procedimiento) {
   const formulario = document.getElementById(formularioId);
   const formData = new FormData(formulario);
@@ -11,7 +73,8 @@ function enviarFormulario(formularioId, procedimiento) {
   xhttp.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
       // La respuesta desde PHP (opcional)
-      console.log(this.responseText);
+      //console.log(this.responseText);
+      LlenarTablaServicios();
     }
   };
   xhttp.open("POST", "./php/server/Servicios/apis_servicios.php", true);
@@ -79,45 +142,68 @@ function cargarComboBox() {
   xhrComboData.send(formData);
 }
 
-function LlenarTablaServicios() {
-  const tableBody = document.querySelector(".tbody-servicios");
-  const formData = new FormData();
-  formData.append("procedimiento", "vista");
-  // Realizar la petición AJAX para obtener los datos del combo box
-  const xhrComboData = new XMLHttpRequest();
-  xhrComboData.onreadystatechange = function () {
-    //console.log("Respuesta del servidor:", xhrComboData.responseText);
-    if (xhrComboData.readyState === 4 && xhrComboData.status === 200) {
-      //console.log(this.responseText);
-      const data = JSON.parse(xhrComboData.responseText);
-      data.forEach(item => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-                        <td class="py-3">${item.ID_servicio}</td>
-                        <td class="py-3">${item.Nombre}</td>
-                        <td class="py-3">${item.Precio}</td>
-                        <td class="py-3">
-                          <button class="btn btn-warning btn-sm">
-                            <i class="bx bx-edit"></i>
-                          </button>
-                          <button class="btn btn-danger btn-sm">
-                            <i class="bx bx-eraser"></i>
-                          </button>
-                        </td>
-                    `;
-        tableBody.appendChild(row);
+function EliminarServicio() {
+  const tableContainer = document.querySelector(".tbody-servicios");
+
+  tableContainer.addEventListener("click", event => {
+    // Verificar si el botón eliminar fue clickeado
+    if (event.target.classList.contains("eliminar-btn")) {
+      const button = event.target;
+      const ID_servicio = button.getAttribute("data-id");
+
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Esta acción no se puede deshacer",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar",
+      }).then(result => {
+        if (result.isConfirmed) {
+          const formData = new FormData();
+          formData.append("procedimiento", "spEliminarServicio");
+          formData.append("id", ID_servicio);
+
+          // Realizar la solicitud a PHP mediante AJAX
+          const xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+            if (this.readyState === 4) {
+              if (this.status === 200) {
+                // La respuesta desde PHP
+                const response = JSON.parse(this.responseText);
+                if (response.success) {
+                  Swal.fire(
+                    "¡Eliminado!",
+                    "El servicio ha sido eliminado.",
+                    "success"
+                  ).then(() => {
+                    // Actualizar la página o realizar las acciones necesarias
+                    location.reload();
+                  });
+                } else {
+                  Swal.fire(
+                    "Error",
+                    "No se pudo eliminar el servicio.",
+                    "error"
+                  );
+                }
+              } else {
+                Swal.fire("Error", "Error en la solicitud AJAX", "error");
+              }
+            }
+          };
+          xhttp.open("POST", "./php/server/Servicios/apis_servicios.php", true);
+          xhttp.send(formData);
+        }
       });
     }
-  };
-  xhrComboData.open(
-    "POST",
-    "./php/server/Servicios/apis_servicios.php?getComboData=true",
-    true
-  );
-  xhrComboData.send(formData);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarComboBox();
   LlenarTablaServicios();
+  EliminarServicio();
 });

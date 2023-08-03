@@ -16,12 +16,12 @@
   <div class="container-fluid">
     <div class="row">
       <?php
-                include('./nav-lateral.php');
-            ?>
+      include('./nav-lateral.php');
+      ?>
       <div class="col-10 body-container overflow-auto">
         <?php
-                    include('./php/components/body-servicios.php')
-                ?>
+        include('./php/components/body-servicios.php')
+          ?>
       </div>
     </div>
   </div>
@@ -31,5 +31,6 @@
   integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 <script src="./js/Servicios/index.js"></script>
+<script src="./js/sweetalert2.min.js"></script>
 
 </html>
