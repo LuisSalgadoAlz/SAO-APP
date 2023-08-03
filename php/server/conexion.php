@@ -7,7 +7,7 @@ class Conexion
   {
     $serverName = "DESKTOP-VQK4B55\MSSQLSERVER2"; // Cambiar por el nombre del servidor de SQL Server
     $connectionOptions = array(
-      "Database" => "foraneos",
+      "Database" => "huevon",
       // Cambiar por el nombre de la base de datos
       "Uid" => "sa",
       // Cambiar por el usuario de la base de datos
