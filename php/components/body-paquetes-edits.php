@@ -43,109 +43,111 @@
       </div>
     </div>
   </div>
-  <div class="row mt-2">
-    <div class="col-6 p-2">
-      <div class="container header bg-white rounded p-2 shadow-sm">
-        <div class="row">
-          <div class="col px-5 pt-3">
-            <span class="fw-semibold">Modificar paquete</span>
-            <hr>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col px-5">
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Nombre del paquete</label>
-              <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1"
-                placeholder="Eje. paquete basico">
-            </div>
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Horas establecidas</label>
-              <input type="number" class="form-control form-control-sm" id="exampleFormControlInput1"
-                placeholder="horas">
-            </div>
-            <div>
-              <label for="exampleFormControlInput1" class="form-label">Precio total</label>
-              <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1"
-                placeholder="Precio total del paquete" disabled>
+  <form id="info-paquete">
+    <div class="row mt-2">
+      <div class="col-6 p-2">
+        <div class="container header bg-white rounded p-2 shadow-sm">
+          <div class="row">
+            <div class="col px-5 pt-3">
+              <span class="fw-semibold">Modificar paquete</span>
+              <hr>
             </div>
           </div>
-        </div>
-        <div class="row mt-4">
-          <div class="col px-5 py-3">
-            <button type="button" class="btn btn-light w-100" data-bs-dismiss="modal">Guardar</button>
+          <div class="row">
+            <div class="col px-5">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nombre del paquete</label>
+                <input type="text" class="form-control form-control-sm nombre-paquete" id="exampleFormControlInput1"
+                  name="nombre-paquete" placeholder="Eje. paquete basico">
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Horas establecidas</label>
+                <input type="number" class="form-control form-control-sm horasEstablecidas"
+                  id="exampleFormControlInput1" placeholder="horas" name="horasEstablecidas">
+              </div>
+              <div>
+                <label for="exampleFormControlInput1" class="form-label">Precio total</label>
+                <input type="text" class="form-control form-control-sm precioTotal" id="exampleFormControlInput1"
+                  placeholder="Precio total del paquete" name="precioTotal" readonly>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col px-5 py-3">
+              <button type="submit" class="btn btn-light w-100" data-bs-dismiss="modal">Guardar</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-6 p-2">
-      <div class="container header bg-white rounded p-4 shadow-sm">
-        <div class="row">
-          <span class="fw-semibold">
-            Servicios acuales
-          </span>
-        </div>
-        <div class="row mt-3">
-          <div class="col overflow-auto table-scroll" style="height: 43.8vh;">
-            <table class="table table-hover table-borderless">
-              <thead class="table-light">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Precio</th>
-                  <th scope="col">Accion</th>
-                </tr>
-              </thead>
-              <tbody class="tbody-servicios">
-                <tr>
-                  <td class="py-3">1</td>
-                  <td class="py-3">Premier</td>
-                  <td class="py-3">1,200 Lps</td>
-                  <td class="py-3">
-                    <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-3">1</td>
-                  <td class="py-3">Premier</td>
-                  <td class="py-3">1,200 Lps</td>
-                  <td class="py-3">
-                    <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-3">1</td>
-                  <td class="py-3">Premier</td>
-                  <td class="py-3">1,200 Lps</td>
-                  <td class="py-3">
-                    <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-3">1</td>
-                  <td class="py-3">Premier</td>
-                  <td class="py-3">1,200 Lps</td>
-                  <td class="py-3">
+  </form>
+  <div class="col-6 p-2">
+    <div class="container header bg-white rounded p-4 shadow-sm">
+      <div class="row">
+        <span class="fw-semibold">
+          Servicios acuales
+        </span>
+      </div>
+      <div class="row mt-3">
+        <div class="col overflow-auto table-scroll" style="height: 43.8vh;">
+          <table class="table table-hover table-borderless">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Accion</th>
+              </tr>
+            </thead>
+            <tbody class="tbody-servicios">
+              <tr>
+                <td class="py-3">1</td>
+                <td class="py-3">Premier</td>
+                <td class="py-3">1,200 Lps</td>
+                <td class="py-3">
+                  <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3">1</td>
+                <td class="py-3">Premier</td>
+                <td class="py-3">1,200 Lps</td>
+                <td class="py-3">
+                  <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3">1</td>
+                <td class="py-3">Premier</td>
+                <td class="py-3">1,200 Lps</td>
+                <td class="py-3">
+                  <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td class="py-3">1</td>
+                <td class="py-3">Premier</td>
+                <td class="py-3">1,200 Lps</td>
+                <td class="py-3">
 
-                    <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                  <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
-  <div class="row mt-3">
-    <div class="col p-2">
-      <div class="header col-12 bg-white rounded py-2 px-3 d-flex justify-content-center align-items-center">
-        <footer class="footer text-center py-2">
-          <span>&copy; 2023 - Todos los derechos reservados foraneos</span>
-        </footer>
-      </div>
+</div>
+<div class="row mt-3">
+  <div class="col p-2">
+    <div class="header col-12 bg-white rounded py-2 px-3 d-flex justify-content-center align-items-center">
+      <footer class="footer text-center py-2">
+        <span>&copy; 2023 - Todos los derechos reservados foraneos</span>
+      </footer>
     </div>
   </div>
+</div>
 </div>
 
 <!-- Formulario del modal -->

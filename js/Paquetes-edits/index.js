@@ -73,17 +73,61 @@ function LlenarTablaServicios() {
     });
 }
 
-function enviarFormulario(formularioId, procedimiento) {
+function enviarFormularioServicios() {
+  const formData = new FormData();
+  const comboBoxServicios = document.querySelector(".combo-servicios");
+  const urlParams = new URLSearchParams(window.location.search);
+  const paqueteID = urlParams.get("paqueteID");
+  const servicioID = comboBoxServicios.value;
+
+  // Agregar otros campos o datos si es necesario
+  formData.append("procedimiento", "spActualizarTablaPaquetesDetalles");
+  formData.append("paqueteID", paqueteID);
+  formData.append("servicio", servicioID);
+
+  // Realizar la solicitud a PHP mediante Fetch API
+  fetch("./php/server/Paquetes-edits/apis_paquetes-edits.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.text(); // Si se espera una respuesta de texto
+    })
+    .then(responseText => {
+      // Mostrar mensajes de error o éxito según la respuesta del servidor
+      if (responseText.includes("El servicioID ya existe")) {
+        // Mostrar mensaje de SweetAlert con un icono de información
+        Swal.fire({
+          icon: "info",
+          title: "Información",
+          text: "El servicio ya existe en el paquete.",
+        });
+      } else if (responseText.includes("Actualización exitosa")) {
+        Swal.fire({
+          icon: "success",
+          title: "Información",
+          text: "Servicio agregado al paquete.",
+        });
+        LlenarTablaServicios(); // Actualiza la tabla de servicios si es exitoso
+      }
+    })
+    .catch(error => {
+      console.error("Fetch error:", error);
+    });
+}
+
+function enviarFormularioPaquetes(formularioId, procedimiento) {
   const formulario = document.getElementById(formularioId);
   const formData = new FormData(formulario);
   const urlParams = new URLSearchParams(window.location.search);
   const paqueteID = urlParams.get("paqueteID");
 
-  // Agregar otros campos o datos si es necesario
   formData.append("procedimiento", procedimiento);
   formData.append("paqueteID", paqueteID);
 
-  // Realizar la solicitud a PHP mediante Fetch API
   fetch("./php/server/Servicios/apis_servicios.php", {
     method: "POST",
     body: formData,
@@ -95,7 +139,13 @@ function enviarFormulario(formularioId, procedimiento) {
       return response.text(); // Si se espera una respuesta de texto
     })
     .then(responseText => {
-      LlenarTablaServicios();
+      // Mostrar notificación SweetAlert de éxito
+      Swal.fire({
+        icon: "success",
+        title: "Datos actualizados correctamente",
+        showConfirmButton: false,
+        timer: 1500, // Tiempo en milisegundos
+      });
     })
     .catch(error => {
       console.error("Fetch error:", error);
@@ -108,17 +158,118 @@ function ReestablecerCombo() {
   comboBox.value = "Selecione una opcion";
 }
 
+function EliminarServicioPaquete() {
+  const tableContainer = document.querySelector(".tbody-servicios");
+
+  tableContainer.addEventListener("click", event => {
+    // Verificar si el botón eliminar fue clickeado
+    if (event.target.classList.contains("eliminar-btn")) {
+      const button = event.target;
+      const ID_servicio = button.getAttribute("data-id");
+
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Esta acción no se puede deshacer",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar",
+      }).then(result => {
+        if (result.isConfirmed) {
+          const formData = new FormData();
+          formData.append("procedimiento", "spEliminarServicioPaquete");
+          formData.append("id", ID_servicio);
+
+          // Realizar la solicitud a PHP mediante Fetch API
+          fetch("./php/server/Servicios/apis_servicios.php", {
+            method: "POST",
+            body: formData,
+          })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then(response => {
+              if (response.success) {
+                Swal.fire(
+                  "¡Eliminado!",
+                  "El servicio ha sido eliminado.",
+                  "success"
+                ).then(() => {
+                  // Actualizar la página o realizar las acciones necesarias
+                  location.reload();
+                });
+              } else {
+                Swal.fire("Error", "No se pudo eliminar el servicio.", "error");
+              }
+            })
+            .catch(error => {
+              console.error("Fetch error:", error);
+            });
+        }
+      });
+    }
+  });
+}
+
+function cargarDatosPaquete() {
+  const nombrePaquete = document.querySelector(".nombre-paquete");
+  const horasEstablecidas = document.querySelector(".horasEstablecidas");
+  const precioFinal = document.querySelector(".precioTotal");
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const paqueteID = urlParams.get("paqueteID");
+
+  const formData = new FormData();
+  formData.append("procedimiento", "spMostrarDatosPaquetes");
+  formData.append("paqueteID", paqueteID);
+
+  // Realizar la petición Fetch para obtener los datos del combo box
+  fetch("./php/server/Servicios/apis_servicios.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Agregar las opciones al combo box
+      console.log(data);
+      nombrePaquete.value = data[0].Nombre;
+      data[0].Horas === null
+        ? (horasEstablecidas.value = 0)
+        : (horasEstablecidas.value = data[0].Horas);
+      precioFinal.value = data[0].Precio;
+    })
+    .catch(error => {
+      console.error("Fetch error:", error);
+    });
+}
+
 // Manejar el evento de envío para cada formulario
 document.getElementById("form-agregar-servicio").onsubmit = function (event) {
   event.preventDefault();
-  enviarFormulario(
-    "form-agregar-servicio",
-    "spActualizarTablaPaquetesDetalles"
-  );
+  enviarFormularioServicios();
   ReestablecerCombo();
+  //verificarServicioEnBaseDeDatos(2);
+};
+
+document.getElementById("info-paquete").onsubmit = function (event) {
+  event.preventDefault();
+  enviarFormularioPaquetes("info-paquete", "spActualizarDatosPaquete");
+  //LimpiarFormPaquetes();
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarComboBox();
   LlenarTablaServicios();
+  EliminarServicioPaquete();
+  cargarDatosPaquete();
 });

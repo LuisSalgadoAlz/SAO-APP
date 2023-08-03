@@ -7,7 +7,6 @@ $conexion = new Conexion();
 
 // Obtener el nombre del procedimiento almacenado a ejecutar
 $nombreProcedimiento = $_POST['procedimiento'];
-
 // Procedimientos almacenados para la introducción de información
 if ($nombreProcedimiento === "spInsertarNuevoServicio") {
   // Obtener los datos del formulario 1
@@ -102,6 +101,21 @@ if ($nombreProcedimiento === "spEliminarPaquete") {
   echo json_encode($response);
 }
 
+if ($nombreProcedimiento === "spEliminarServicioPaquete") {
+  $id = $_POST['id'];
+  $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$id]);
+
+  if ($resultado) {
+    $response = array('success' => true, 'message' => 'Servicio eliminado exitosamente.');
+  } else {
+    $response = array('success' => false, 'message' => 'Error al eliminar el servicio.');
+  }
+
+  // Devolver la respuesta en formato JSON
+  header('Content-Type: application/json');
+  echo json_encode($response);
+}
+
 if ($nombreProcedimiento === "spMostrarServiciosPaqueteEspecifico") {
   $paqueteID = $_POST['paqueteID'];
   $resultado = $conexion->ejecutarProcedimientosAlmacenado($nombreProcedimiento, [$paqueteID]);
@@ -122,6 +136,34 @@ if ($nombreProcedimiento === "spMostrarServiciosPaqueteEspecifico") {
   echo $resultadoJSON;
 }
 
+if ($nombreProcedimiento === "spMostrarDatosPaquetes") {
+  $paqueteID = $_POST['paqueteID'];
+  $resultado = $conexion->ejecutarProcedimientosAlmacenado($nombreProcedimiento, [$paqueteID]);
 
+  // Obtener los resultados del objeto de declaración
+  $data = [];
+  while ($row = sqlsrv_fetch_array($resultado, SQLSRV_FETCH_ASSOC)) {
+    $data[] = $row;
+  }
+
+  // Convertir los resultados a formato JSON
+  $resultadoJSON = json_encode($data);
+
+  // Establecer encabezados para indicar que la respuesta es en formato JSON
+  header('Content-Type: application/json');
+
+  // Imprimir el resultado en formato JSON
+  echo $resultadoJSON;
+}
+
+if ($nombreProcedimiento === "spActualizarDatosPaquete") {
+  $nombre = $_POST['nombre-paquete'];
+  $precio = $_POST['precioTotal'];
+  $horas = $_POST['horasEstablecidas'];
+  $paqueteID = $_POST['paqueteID'];
+
+  print_r($nombre);
+  $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$paqueteID, $nombre, $horas, $precio]);
+}
 
 ?>
