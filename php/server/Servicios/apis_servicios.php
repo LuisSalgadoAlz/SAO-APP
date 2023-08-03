@@ -11,7 +11,8 @@ $nombreProcedimiento = $_POST['procedimiento'];
 // Crear una instancia de la clase de conexión a la base de datos
 
 
-//Ejecutar el procedimiento almacenado correspondiente
+
+// Procedimientos almacenados para la introducción de información
 if ($nombreProcedimiento === "spInsertarNuevoServicio") {
   // Obtener los datos del formulario 1
   $nombre = $_POST['nombre'];
@@ -30,6 +31,8 @@ if ($nombreProcedimiento === "spInsertarPaquete") {
   $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$nombre, $precio, $servicio]);
 }
 
+// Cargar datos a los comboBox
+
 if (isset($_GET['getComboData']) && $_GET['getComboData'] === 'true') {
   $sql = "select * from vServicios";
   $result = $conexion->query($sql);
@@ -47,7 +50,40 @@ if (isset($_GET['getComboData']) && $_GET['getComboData'] === 'true') {
   echo $jsonData;
 }
 
+if (isset($_GET['getDataTablePaquetes']) && $_GET['getDataTablePaquetes'] === 'true') {
+  $sql = "select * from vMostrarPaquetes";
+  $result = $conexion->query($sql);
+
+  // Almacena los datos en un array
+  $data = array();
+  while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+    $data[] = $row;
+  }
+
+  // Convierte los datos a formato JSON
+  $jsonData = json_encode($data);
+
+  // Devuelve los datos JSON
+  echo $jsonData;
+}
+
+// Eliminar datos de las tablas
 if ($nombreProcedimiento === "spEliminarServicio") {
+  $id = $_POST['id'];
+  $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$id]);
+
+  if ($resultado) {
+    $response = array('success' => true, 'message' => 'Servicio eliminado exitosamente.');
+  } else {
+    $response = array('success' => false, 'message' => 'Error al eliminar el servicio.');
+  }
+
+  // Devolver la respuesta en formato JSON
+  header('Content-Type: application/json');
+  echo json_encode($response);
+}
+
+if ($nombreProcedimiento === "spEliminarPaquete") {
   $id = $_POST['id'];
   $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$id]);
 

@@ -1,4 +1,3 @@
-// Función para enviar el formulario mediante AJAX
 function LlenarTablaServicios() {
   const tableBody = document.querySelector(".tbody-servicios");
   const formData = new FormData();
@@ -61,6 +60,70 @@ function LlenarTablaServicios() {
   xhrComboData.send(formData);
 }
 
+function LlenarTablaPaquetes() {
+  const tableBody = document.querySelector(".tbody-paquetes");
+  const formData = new FormData();
+  formData.append("procedimiento", "vista");
+
+  // Realizar la petición AJAX para obtener los datos del combo box
+  const xhrComboData = new XMLHttpRequest();
+  xhrComboData.onreadystatechange = function () {
+    if (xhrComboData.readyState === 4 && xhrComboData.status === 200) {
+      const data = JSON.parse(xhrComboData.responseText);
+      data.forEach(item => {
+        // Verificar si ya existe una fila con el mismo ID de servicio
+        const existingRow = tableBody.querySelector(
+          `tr[data-id="${item.PaqueteID}"]`
+        );
+
+        if (existingRow) {
+          // Actualizar la fila existente
+          existingRow.innerHTML = `
+            <td class="py-3">${item.PaqueteID}</td>
+            <td class="py-3">${item.Nombre}</td>
+            <td class="py-3">${item.Servicios}</td>
+            <td class="py-3">${item.Precio}</td>
+            <td class="py-3">
+            <a href="./paquetes-edits.php" class="btn btn-warning btn-sm">
+                <i class='bx bx-edit'></i>
+            </a>
+              <button class="btn btn-danger btn-sm eliminar-btn" data-id=${item.PaqueteID}>
+                <i class="bx bx-eraser"></i>
+              </button>
+            </td>
+          `;
+        } else {
+          // Crear una nueva fila
+          const row = document.createElement("tr");
+          row.setAttribute("data-id", item.PaqueteID);
+          row.innerHTML = `
+            <td class="py-3">${item.PaqueteID}</td>
+            <td class="py-3">${item.Nombre}</td>
+            <td class="py-3">${item.Servicios}</td>
+            <td class="py-3">${item.Precio}</td>
+            <td class="py-3">
+              <a href="./paquetes-edits.php" class="btn btn-warning btn-sm">
+                  <i class='bx bx-edit'></i>
+              </a>
+              <button class="btn btn-danger btn-sm eliminar-btn" data-id=${item.PaqueteID}>
+                <i class="bx bx-eraser"></i>
+              </button>
+            </td>
+          `;
+          tableBody.appendChild(row);
+        }
+      });
+    }
+  };
+
+  xhrComboData.open(
+    "POST",
+    "./php/server/Servicios/apis_servicios.php?getDataTablePaquetes=true",
+    true
+  );
+  xhrComboData.send(formData);
+}
+
 function enviarFormulario(formularioId, procedimiento) {
   const formulario = document.getElementById(formularioId);
   const formData = new FormData(formulario);
@@ -74,7 +137,11 @@ function enviarFormulario(formularioId, procedimiento) {
     if (this.readyState === 4 && this.status === 200) {
       // La respuesta desde PHP (opcional)
       //console.log(this.responseText);
-      LlenarTablaServicios();
+      if (formularioId == "form-Nuevo-Servicio") {
+        LlenarTablaServicios();
+      } else if (formularioId == "form-Nuevo-Paquete") {
+        LlenarTablaPaquetes();
+      }
     }
   };
   xhttp.open("POST", "./php/server/Servicios/apis_servicios.php", true);
@@ -91,6 +158,7 @@ document.getElementById("form-Nuevo-Servicio").onsubmit = function (event) {
 document.getElementById("form-Nuevo-Paquete").onsubmit = function (event) {
   event.preventDefault();
   enviarFormulario("form-Nuevo-Paquete", "spInsertarPaquete");
+  LimpiarFormPaquetes();
 };
 
 function LimpiarFormServicios() {
@@ -100,6 +168,16 @@ function LimpiarFormServicios() {
 
   nombre.value = "";
   descripcion.value = "";
+  precio.value = "";
+}
+
+function LimpiarFormPaquetes() {
+  const nombre = document.querySelector(".name-paquete");
+  const servicioInicial = document.querySelector(".combo-servicio-inicial");
+  const precio = document.querySelector(".precio-inicial-paquete");
+
+  nombre.value = "";
+  servicioInicial.value = "Selecione una opcion";
   precio.value = "";
 }
 
@@ -202,8 +280,70 @@ function EliminarServicio() {
   });
 }
 
+function EliminarPaquete() {
+  const tableContainer = document.querySelector(".tbody-paquetes");
+
+  tableContainer.addEventListener("click", event => {
+    // Verificar si el botón eliminar fue clickeado
+    if (event.target.classList.contains("eliminar-btn")) {
+      const button = event.target;
+      const ID_servicio = button.getAttribute("data-id");
+
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Esta acción no se puede deshacer",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar",
+      }).then(result => {
+        if (result.isConfirmed) {
+          const formData = new FormData();
+          formData.append("procedimiento", "spEliminarPaquete");
+          formData.append("id", ID_servicio);
+
+          // Realizar la solicitud a PHP mediante AJAX
+          const xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+            if (this.readyState === 4) {
+              if (this.status === 200) {
+                // La respuesta desde PHP
+                const response = JSON.parse(this.responseText);
+                if (response.success) {
+                  Swal.fire(
+                    "¡Eliminado!",
+                    "El paquete ha sido eliminado.",
+                    "success"
+                  ).then(() => {
+                    // Actualizar la página o realizar las acciones necesarias
+                    location.reload();
+                  });
+                } else {
+                  Swal.fire(
+                    "Error",
+                    "No se pudo eliminar el paquete.",
+                    "error"
+                  );
+                }
+              } else {
+                Swal.fire("Error", "Error en la solicitud AJAX", "error");
+              }
+            }
+          };
+          xhttp.open("POST", "./php/server/Servicios/apis_servicios.php", true);
+          xhttp.send(formData);
+        }
+      });
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   cargarComboBox();
   LlenarTablaServicios();
+  LlenarTablaPaquetes();
   EliminarServicio();
+  EliminarPaquete();
 });

@@ -118,17 +118,7 @@
                     <th scope="col">Accion</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">Premier</td>
-                    <td class="py-3">13</td>
-                    <td class="py-3">1,200 Lps</td>
-                    <td class="py-3">
-                      <a href="./paquetes-edits.php" class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></a>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
+                <tbody class="tbody-paquetes">
                 </tbody>
               </table>
             </div>
@@ -190,8 +180,8 @@
         <div class="modal-body">
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Nombre del paquete</label>
-            <input type="text" class="form-control form-control-sm" name="name-paquete" id="exampleFormControlInput1"
-              placeholder="Eje. paquete basico">
+            <input type="text" class="form-control form-control-sm name-paquete" name="name-paquete"
+              id="exampleFormControlInput1" placeholder="Eje. paquete basico">
           </div>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Servicio inicial</label>
