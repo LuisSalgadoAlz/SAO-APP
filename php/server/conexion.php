@@ -5,7 +5,7 @@ class Conexion
 
   public function __construct()
   {
-    $serverName = "MSI"; // Cambiar por el nombre del servidor de SQL Server
+    $serverName = "DESKTOP-VQK4B55\MSSQLSERVER2"; // Cambiar por el nombre del servidor de SQL Server
     $connectionOptions = array(
       "Database" => "foraneos",
       // Cambiar por el nombre de la base de datos
