@@ -5,13 +5,13 @@ class Conexion
 
   public function __construct()
   {
-    $serverName = "localhost"; // Cambiar por el nombre del servidor de SQL Server
+    $serverName = "DESKTOP-VQK4B55\MSSQLSERVER2"; // Cambiar por el nombre del servidor de SQL Server
     $connectionOptions = array(
       "Database" => "foraneos",
       // Cambiar por el nombre de la base de datos
-      "Uid" => "ss",
+      "Uid" => "sa",
       // Cambiar por el usuario de la base de datos
-      "PWD" => "root" // Cambiar por la contraseña del usuario
+      "PWD" => "Jalea987" // Cambiar por la contraseña del usuario
     );
 
     $this->conexion = sqlsrv_connect($serverName, $connectionOptions);
