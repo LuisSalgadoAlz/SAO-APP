@@ -112,6 +112,7 @@ function enviarFormularioServicios() {
           text: "Servicio agregado al paquete.",
         });
         LlenarTablaServicios(); // Actualiza la tabla de servicios si es exitoso
+        cargarDatosPaquete();
       }
     })
     .catch(error => {
@@ -120,6 +121,8 @@ function enviarFormularioServicios() {
 }
 
 function enviarFormularioPaquetes(formularioId, procedimiento) {
+  console.log("entro aqui");
+
   const formulario = document.getElementById(formularioId);
   const formData = new FormData(formulario);
   const urlParams = new URLSearchParams(window.location.search);
@@ -158,60 +161,50 @@ function ReestablecerCombo() {
   comboBox.value = "Selecione una opcion";
 }
 
-function EliminarServicioPaquete() {
-  const tableContainer = document.querySelector(".tbody-servicios");
+function EliminarServicioPaquete(ID_servicio) {
+  Swal.fire({
+    title: "¿Estás seguro?",
+    text: "Esta acción no se puede deshacer",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar",
+  }).then(result => {
+    if (result.isConfirmed) {
+      const formData = new FormData();
+      formData.append("procedimiento", "spEliminarServicioPaquete");
+      formData.append("id", ID_servicio);
 
-  tableContainer.addEventListener("click", event => {
-    // Verificar si el botón eliminar fue clickeado
-    if (event.target.classList.contains("eliminar-btn")) {
-      const button = event.target;
-      const ID_servicio = button.getAttribute("data-id");
-
-      Swal.fire({
-        title: "¿Estás seguro?",
-        text: "Esta acción no se puede deshacer",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Sí, eliminar",
-        cancelButtonText: "Cancelar",
-      }).then(result => {
-        if (result.isConfirmed) {
-          const formData = new FormData();
-          formData.append("procedimiento", "spEliminarServicioPaquete");
-          formData.append("id", ID_servicio);
-
-          // Realizar la solicitud a PHP mediante Fetch API
-          fetch("./php/server/Servicios/apis_servicios.php", {
-            method: "POST",
-            body: formData,
-          })
-            .then(response => {
-              if (!response.ok) {
-                throw new Error("Network response was not ok");
-              }
-              return response.json();
-            })
-            .then(response => {
-              if (response.success) {
-                Swal.fire(
-                  "¡Eliminado!",
-                  "El servicio ha sido eliminado.",
-                  "success"
-                ).then(() => {
-                  // Actualizar la página o realizar las acciones necesarias
-                  location.reload();
-                });
-              } else {
-                Swal.fire("Error", "No se pudo eliminar el servicio.", "error");
-              }
-            })
-            .catch(error => {
-              console.error("Fetch error:", error);
+      // Realizar la solicitud a PHP mediante Fetch API
+      fetch("./php/server/Servicios/apis_servicios.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then(response => {
+          if (response.success) {
+            Swal.fire(
+              "¡Eliminado!",
+              "El servicio ha sido eliminado.",
+              "success"
+            ).then(() => {
+              // Actualizar la página o realizar las acciones necesarias
+              location.reload();
             });
-        }
-      });
+          } else {
+            Swal.fire("Error", "No se pudo eliminar el servicio.", "error");
+          }
+        })
+        .catch(error => {
+          console.error("Fetch error:", error);
+        });
     }
   });
 }
@@ -258,18 +251,30 @@ document.getElementById("form-agregar-servicio").onsubmit = function (event) {
   event.preventDefault();
   enviarFormularioServicios();
   ReestablecerCombo();
-  //verificarServicioEnBaseDeDatos(2);
 };
 
-document.getElementById("info-paquete").onsubmit = function (event) {
+document.getElementById("paquetes").onsubmit = function (event) {
   event.preventDefault();
-  enviarFormularioPaquetes("info-paquete", "spActualizarDatosPaquete");
+  event.stopPropagation();
+  enviarFormularioPaquetes("paquetes", "spActualizarDatosPaquete");
   //LimpiarFormPaquetes();
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarComboBox();
   LlenarTablaServicios();
-  EliminarServicioPaquete();
   cargarDatosPaquete();
+
+  const tableContainer = document.querySelector(".tbody-servicios");
+
+  // Attach a click event listener to the parent container of the delete buttons
+  tableContainer.addEventListener("click", event => {
+    if (event.target.classList.contains("eliminar-btn")) {
+      event.preventDefault();
+      const button = event.target;
+      const ID_servicio = button.getAttribute("data-id");
+      event.stopPropagation(); // Evitar que el evento se propague aquí
+      EliminarServicioPaquete(ID_servicio);
+    }
+  });
 });

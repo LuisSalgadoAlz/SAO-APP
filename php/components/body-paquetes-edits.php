@@ -43,7 +43,8 @@
       </div>
     </div>
   </div>
-  <form id="info-paquete">
+
+  <form id="paquetes">
     <div class="row mt-2">
       <div class="col-6 p-2">
         <div class="container header bg-white rounded p-2 shadow-sm">
@@ -74,12 +75,14 @@
           </div>
           <div class="row mt-4">
             <div class="col px-5 py-3">
-              <button type="submit" class="btn btn-light w-100" data-bs-dismiss="modal">Guardar</button>
+              <button type="submit" class="btn btn-light w-100" id="enviar-form"
+                data-bs-dismiss="modal">Guardar</button>
             </div>
           </div>
         </div>
       </div>
   </form>
+
   <div class="col-6 p-2">
     <div class="container header bg-white rounded p-4 shadow-sm">
       <div class="row">
@@ -99,39 +102,6 @@
               </tr>
             </thead>
             <tbody class="tbody-servicios">
-              <tr>
-                <td class="py-3">1</td>
-                <td class="py-3">Premier</td>
-                <td class="py-3">1,200 Lps</td>
-                <td class="py-3">
-                  <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                </td>
-              </tr>
-              <tr>
-                <td class="py-3">1</td>
-                <td class="py-3">Premier</td>
-                <td class="py-3">1,200 Lps</td>
-                <td class="py-3">
-                  <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                </td>
-              </tr>
-              <tr>
-                <td class="py-3">1</td>
-                <td class="py-3">Premier</td>
-                <td class="py-3">1,200 Lps</td>
-                <td class="py-3">
-                  <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                </td>
-              </tr>
-              <tr>
-                <td class="py-3">1</td>
-                <td class="py-3">Premier</td>
-                <td class="py-3">1,200 Lps</td>
-                <td class="py-3">
-
-                  <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
