@@ -60,7 +60,7 @@ function LlenarTablaServicios() {
           <td class="py-3">${item.Nombre}</td>
           <td class="py-3">${item.Precio}</td>
           <td class="py-3">
-            <button class="btn btn-danger btn-sm eliminar-btn" data-id="${item.ID_servicio}">
+            <button class="btn btn-danger btn-sm eliminar-btn" data-id="${item.ID_servicio}" onclick="EliminarServicioPaquete(${item.ID_servicio})">
               <i class="bx bx-eraser"></i>
             </button>
           </td>
@@ -120,20 +120,64 @@ function enviarFormularioServicios() {
     });
 }
 
-function enviarFormularioPaquetes(formularioId, procedimiento) {
+// function enviarFormularioPaquetes(formularioId, procedimiento) {
+//   console.log("entro aqui");
+
+//   const formulario = document.getElementById(formularioId);
+//   const formData = new FormData(formulario);
+//   const urlParams = new URLSearchParams(window.location.search);
+//   const paqueteID = urlParams.get("paqueteID");
+
+//   formData.append("procedimiento", procedimiento);
+//   formData.append("paqueteID", paqueteID);
+
+//   fetch("./php/server/Servicios/apis_servicios.php", {
+//     method: "POST",
+//     body: formData,
+//   })
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error("Network response was not ok");
+//       }
+//       return response.text(); // Si se espera una respuesta de texto
+//     })
+//     .then(responseText => {
+//       // Mostrar notificación SweetAlert de éxito
+//       Swal.fire({
+//         icon: "success",
+//         title: "Datos actualizados correctamente",
+//         showConfirmButton: false,
+//         timer: 1500, // Tiempo en milisegundos
+//       });
+//     })
+//     .catch(error => {
+//       console.error("Fetch error:", error);
+//     });
+// }
+
+function enviarFormularioPaquetes(procedimiento) {
   console.log("entro aqui");
 
-  const formulario = document.getElementById(formularioId);
-  const formData = new FormData(formulario);
+  const nombrePaquete = document.querySelector(".nombre-paquete").value;
+  const horasEstablecidas = document.querySelector(".horasEstablecidas").value;
+  const precioTotal = document.querySelector(".precioTotal").value;
   const urlParams = new URLSearchParams(window.location.search);
   const paqueteID = urlParams.get("paqueteID");
 
-  formData.append("procedimiento", procedimiento);
-  formData.append("paqueteID", paqueteID);
+  const requestData = {
+    procedimiento: procedimiento,
+    paqueteID: paqueteID,
+    nombrePaquete: nombrePaquete,
+    horasEstablecidas: horasEstablecidas,
+    precioTotal: precioTotal,
+  };
 
-  fetch("./php/server/Servicios/apis_servicios.php", {
+  fetch("./php/server/Paquetes-edits/apis_paquetes-edits.php", {
     method: "POST",
-    body: formData,
+    headers: {
+      "Content-Type": "application/json", // Indicar el tipo de contenido como JSON
+    },
+    body: JSON.stringify(requestData), // Convertir el objeto a JSON
   })
     .then(response => {
       if (!response.ok) {
@@ -173,23 +217,28 @@ function EliminarServicioPaquete(ID_servicio) {
     cancelButtonText: "Cancelar",
   }).then(result => {
     if (result.isConfirmed) {
-      const formData = new FormData();
-      formData.append("procedimiento", "spEliminarServicioPaquete");
-      formData.append("id", ID_servicio);
+      const requestData = {
+        procedimiento: "spEliminarServicioPaquete",
+        id: ID_servicio,
+      };
 
       // Realizar la solicitud a PHP mediante Fetch API
-      fetch("./php/server/Servicios/apis_servicios.php", {
+      fetch("./php/server/Paquetes-edits/apis_paquetes-edits.php", {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json", // Indicar el tipo de contenido como JSON
+        },
+        body: JSON.stringify(requestData), // Convertir el objeto a JSON
       })
         .then(response => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }
-          return response.json();
+          return response.json(); // Convertir el cuerpo de la respuesta en un objeto JSON
         })
-        .then(response => {
-          if (response.success) {
+        .then(data => {
+          // Ahora puedes trabajar con 'data' como un objeto JSON
+          if (data.success) {
             Swal.fire(
               "¡Eliminado!",
               "El servicio ha sido eliminado.",
@@ -253,28 +302,14 @@ document.getElementById("form-agregar-servicio").onsubmit = function (event) {
   ReestablecerCombo();
 };
 
-document.getElementById("paquetes").onsubmit = function (event) {
-  event.preventDefault();
-  event.stopPropagation();
-  enviarFormularioPaquetes("paquetes", "spActualizarDatosPaquete");
+document.getElementById("enviar-form").addEventListener("click", () => {
+  console.log("hola");
+  enviarFormularioPaquetes("spActualizarDatosPaquete");
   //LimpiarFormPaquetes();
-};
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarComboBox();
   LlenarTablaServicios();
   cargarDatosPaquete();
-
-  const tableContainer = document.querySelector(".tbody-servicios");
-
-  // Attach a click event listener to the parent container of the delete buttons
-  tableContainer.addEventListener("click", event => {
-    if (event.target.classList.contains("eliminar-btn")) {
-      event.preventDefault();
-      const button = event.target;
-      const ID_servicio = button.getAttribute("data-id");
-      event.stopPropagation(); // Evitar que el evento se propague aquí
-      EliminarServicioPaquete(ID_servicio);
-    }
-  });
 });

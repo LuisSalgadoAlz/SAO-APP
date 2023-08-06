@@ -156,14 +156,14 @@ if ($nombreProcedimiento === "spMostrarDatosPaquetes") {
   echo $resultadoJSON;
 }
 
-if ($nombreProcedimiento === "spActualizarDatosPaquete") {
-  $nombre = $_POST['nombre-paquete'];
-  $precio = $_POST['precioTotal'];
-  $horas = $_POST['horasEstablecidas'];
-  $paqueteID = $_POST['paqueteID'];
+// if ($nombreProcedimiento === "spActualizarDatosPaquete") {
+//   $nombre = $_POST['nombre-paquete'];
+//   $precio = $_POST['precioTotal'];
+//   $horas = $_POST['horasEstablecidas'];
+//   $paqueteID = $_POST['paqueteID'];
 
-  print_r($nombre);
-  $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$paqueteID, $nombre, $horas, $precio]);
-}
+//   print_r($nombre);
+//   $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$paqueteID, $nombre, $horas, $precio]);
+// }
 
 ?>
