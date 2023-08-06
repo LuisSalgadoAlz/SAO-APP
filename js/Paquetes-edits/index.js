@@ -120,41 +120,6 @@ function enviarFormularioServicios() {
     });
 }
 
-// function enviarFormularioPaquetes(formularioId, procedimiento) {
-//   console.log("entro aqui");
-
-//   const formulario = document.getElementById(formularioId);
-//   const formData = new FormData(formulario);
-//   const urlParams = new URLSearchParams(window.location.search);
-//   const paqueteID = urlParams.get("paqueteID");
-
-//   formData.append("procedimiento", procedimiento);
-//   formData.append("paqueteID", paqueteID);
-
-//   fetch("./php/server/Servicios/apis_servicios.php", {
-//     method: "POST",
-//     body: formData,
-//   })
-//     .then(response => {
-//       if (!response.ok) {
-//         throw new Error("Network response was not ok");
-//       }
-//       return response.text(); // Si se espera una respuesta de texto
-//     })
-//     .then(responseText => {
-//       // Mostrar notificación SweetAlert de éxito
-//       Swal.fire({
-//         icon: "success",
-//         title: "Datos actualizados correctamente",
-//         showConfirmButton: false,
-//         timer: 1500, // Tiempo en milisegundos
-//       });
-//     })
-//     .catch(error => {
-//       console.error("Fetch error:", error);
-//     });
-// }
-
 function enviarFormularioPaquetes(procedimiento) {
   console.log("entro aqui");
 
@@ -206,6 +171,8 @@ function ReestablecerCombo() {
 }
 
 function EliminarServicioPaquete(ID_servicio) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const paqueteID = urlParams.get("paqueteID");
   Swal.fire({
     title: "¿Estás seguro?",
     text: "Esta acción no se puede deshacer",
@@ -220,6 +187,7 @@ function EliminarServicioPaquete(ID_servicio) {
       const requestData = {
         procedimiento: "spEliminarServicioPaquete",
         id: ID_servicio,
+        paqueteID,
       };
 
       // Realizar la solicitud a PHP mediante Fetch API

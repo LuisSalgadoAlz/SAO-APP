@@ -13,8 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
       if ($nombreProcedimiento === "spEliminarServicioPaquete") {
         $idServicio = $requestData->id;
+        $paqueteID = $requestData->paqueteID;
 
-        $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$idServicio]);
+        $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$idServicio, $paqueteID]);
 
         if ($resultado) {
           $response = array('success' => true, 'message' => 'Servicio eliminado exitosamente.');

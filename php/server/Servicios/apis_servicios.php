@@ -27,7 +27,6 @@ if ($nombreProcedimiento === "spInsertarPaquete") {
 }
 
 if ($nombreProcedimiento === "spActualizarTablaPaquetesDetalles") {
-  // Obtener los datos del formulario 1
   $paqueteID = $_POST['paqueteID'];
   $servicio = $_POST['servicio'];
 
