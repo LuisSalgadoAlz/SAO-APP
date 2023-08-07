@@ -38,7 +38,7 @@ function enviarFormularioNuevoPaquete() {
       }
     })
     .then(responseText => {
-      console.log(responseText);
+      LlenarTablaEstadoPaquetes();
       // La respuesta desde PHP (opcional)
       Swal.fire({
         icon: "success",
@@ -212,14 +212,14 @@ function LlenarTablaEstadoPaquetes() {
       return response.json();
     })
     .then(data => {
-      console.log(data);
-      // Limpiar el contenido existente de la tabla
-      tableBody.innerHTML = "";
-
       data.forEach(item => {
-        const row = document.createElement("tr");
-        row.setAttribute("data-id", item.ContratoID);
-        row.innerHTML = `
+        const existingRow = tableBody.querySelector(
+          `tr[data-id="${item.ContratoID}"]`
+        );
+
+        if (existingRow) {
+          // Actualizar la fila existente
+          existingRow.innerHTML = `
           <td class="py-3">${item.ContratoID}</td>
           <td class="py-3">${item.Cliente}</td>
           <td class="py-3">${item.Contrato}</td>
@@ -227,13 +227,40 @@ function LlenarTablaEstadoPaquetes() {
             <span class="bg-warning-subtle text-emphasis-warning rounded px-1">${item.Estado}</span>
           </td>
           <td class="py-3">
-            <a href="./contratosdetalles.php" class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></a>
+            <a href="#" class="btn btn-warning btn-sm editar-btn" data-id="${item.ContratoID}"><i class='bx bx-edit'></i></a>
             <button class="btn btn-danger btn-sm eliminar-btn" data-id="${item.ContratoID}">
               <i class="bx bx-eraser"></i>
             </button>
           </td>
         `;
-        tableBody.appendChild(row);
+        } else {
+          const row = document.createElement("tr");
+          row.setAttribute("data-id", item.ContratoID);
+          row.innerHTML = `
+          <td class="py-3">${item.ContratoID}</td>
+          <td class="py-3">${item.Cliente}</td>
+          <td class="py-3">${item.Contrato}</td>
+          <td class="py-3">
+            <span class="bg-warning-subtle text-emphasis-warning rounded px-1">${item.Estado}</span>
+          </td>
+          <td class="py-3">
+            <a href="#" class="btn btn-warning btn-sm editar-btn" data-id="${item.ContratoID}"><i class='bx bx-edit'></i></a>
+            <button class="btn btn-danger btn-sm eliminar-btn" data-id="${item.ContratoID}">
+              <i class="bx bx-eraser"></i>
+            </button>
+          </td>
+          `;
+
+          tableBody.appendChild(row);
+        }
+      });
+      const editButtons = document.querySelectorAll(".editar-btn");
+      editButtons.forEach(editButton => {
+        editButton.addEventListener("click", event => {
+          event.preventDefault();
+          const contratoID = editButton.getAttribute("data-id");
+          window.location.href = `./contratosdetalles.php?contratoID=${contratoID}`;
+        });
       });
     })
     .catch(error => {
@@ -241,11 +268,70 @@ function LlenarTablaEstadoPaquetes() {
     });
 }
 
+function EliminarContrato() {
+  const tableContainer = document.querySelector(".tbody-estado-paquetes");
+
+  tableContainer.addEventListener("click", event => {
+    // Verificar si el botón eliminar fue clickeado
+    if (event.target.classList.contains("eliminar-btn")) {
+      const button = event.target;
+      const contratoID = button.getAttribute("data-id");
+
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Esta acción no se puede deshacer",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar",
+      }).then(result => {
+        if (result.isConfirmed) {
+          const formData = new FormData();
+          formData.append("procedimiento", "spEliminarContratoPaquete");
+          formData.append("id", contratoID);
+
+          // Realizar la solicitud a PHP mediante Fetch API
+          fetch("./php/server/Paquetes/apis_paquetes.php", {
+            method: "POST",
+            body: formData,
+          })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then(response => {
+              if (response.success) {
+                Swal.fire(
+                  "¡Eliminado!",
+                  "El contrato ha sido eliminado.",
+                  "success"
+                ).then(() => {
+                  // Actualizar la página o realizar las acciones necesarias
+                  location.reload();
+                });
+              } else {
+                Swal.fire("Error", "No se pudo eliminar el contrato.", "error");
+              }
+            })
+            .catch(error => {
+              console.error("Fetch error:", error);
+            });
+        }
+      });
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   cargarComboBoxTecnico();
   cargarComboBoxPaquete();
   cargarComboBoxCliente();
   LlenarTablaEstadoPaquetes();
+  EliminarContrato();
   const searchInput = document.getElementById("searchCliente");
   searchInput.addEventListener("input", cargarComboBoxCliente);
 });

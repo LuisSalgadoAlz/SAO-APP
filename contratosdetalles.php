@@ -16,11 +16,11 @@
   <div class="container-fluid">
     <div class="row">
       <?php
-          include('./nav-lateral.php');
-        ?>
+      include('./nav-lateral.php');
+      ?>
       <div class="col-10 body-container overflow-auto">
         <?php
-          include('./php/components/body-contratosDetalles.php');
+        include('./php/components/body-contratosDetalles.php');
         ?>
       </div>
     </div>
@@ -29,4 +29,7 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="./js/sweetalert2.min.js"></script>
+<script src="./js/Contratos-detalles/index.js"></script>
+
 </html>

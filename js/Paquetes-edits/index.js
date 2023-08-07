@@ -251,7 +251,6 @@ function cargarDatosPaquete() {
     })
     .then(data => {
       // Agregar las opciones al combo box
-      console.log(data);
       nombrePaquete.value = data[0].Nombre;
       data[0].Horas === null
         ? (horasEstablecidas.value = 0)
@@ -271,7 +270,6 @@ document.getElementById("form-agregar-servicio").onsubmit = function (event) {
 };
 
 document.getElementById("enviar-form").addEventListener("click", () => {
-  console.log("hola");
   enviarFormularioPaquetes("spActualizarDatosPaquete");
   //LimpiarFormPaquetes();
 });

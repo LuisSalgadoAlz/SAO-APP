@@ -94,6 +94,58 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       echo $jsonData;
     }
 
+    if (isset($_GET['getComboDataEstadoContrato']) && $_GET['getComboDataEstadoContrato'] === 'true') {
+      $sql = "select * from vComboEstadoContrato";
+      $result = $conexion->query($sql);
+
+      // Almacena los datos en un array 
+      $data = array();
+      while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+
+      // Convierte los datos a formato JSON
+      $jsonData = json_encode($data);
+
+      // Devuelve los datos JSON
+      echo $jsonData;
+    }
+
+    if ($nombreProcedimiento === "spEliminarContratoPaquete") {
+      $id = $_POST['id'];
+      $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$id]);
+
+      if ($resultado) {
+        $response = array('success' => true, 'message' => 'Contrato eliminado exitosamente.');
+      } else {
+        $response = array('success' => false, 'message' => 'Error al eliminar el contrato.');
+      }
+
+      // Devolver la respuesta en formato JSON
+      header('Content-Type: application/json');
+      echo json_encode($response);
+    }
+
+    if ($nombreProcedimiento === "spMostrarContratoDetalles") {
+      $contratoID = $_POST['contratoID'];
+      $resultado = $conexion->ejecutarProcedimientosAlmacenado($nombreProcedimiento, [$contratoID]);
+
+      // Obtener los resultados del objeto de declaración
+      $data = [];
+      while ($row = sqlsrv_fetch_array($resultado, SQLSRV_FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+
+      // Convertir los resultados a formato JSON
+      $resultadoJSON = json_encode($data);
+
+      // Establecer encabezados para indicar que la respuesta es en formato JSON
+      header('Content-Type: application/json');
+
+      // Imprimir el resultado en formato JSON
+      echo $resultadoJSON;
+    }
+
     // if (isset($_GET['getComboDataCliente']) && $_GET['getComboDataCliente'] === 'true') {
     //   $sql = "select * from vClientesCombo";
     //   $result = $conexion->query($sql);
