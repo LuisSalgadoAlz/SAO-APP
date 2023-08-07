@@ -77,6 +77,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       echo $jsonData;
     }
 
+    if (isset($_GET['getDataEstadoPaquetes']) && $_GET['getDataEstadoPaquetes'] === 'true') {
+      $sql = "select * from vEstadoPaquetes";
+      $result = $conexion->query($sql);
+
+      // Almacena los datos en un array
+      $data = array();
+      while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+
+      // Convierte los datos a formato JSON
+      $jsonData = json_encode($data);
+
+      // Devuelve los datos JSON
+      echo $jsonData;
+    }
+
     // if (isset($_GET['getComboDataCliente']) && $_GET['getComboDataCliente'] === 'true') {
     //   $sql = "select * from vClientesCombo";
     //   $result = $conexion->query($sql);

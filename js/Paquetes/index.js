@@ -1,30 +1,3 @@
-// function enviarFormulario(formularioId, procedimiento) {
-//   const formulario = document.getElementById(formularioId);
-//   const formData = new FormData(formulario);
-
-//   // const areaEspecializacion = formData.get("area-especializacion");
-//   // const horario = formData.get("horario");
-
-//   // if (
-//   //   areaEspecializacion == "Selecione una opcion" ||
-//   //   horario == "Selecione una opcion"
-//   // ) {
-//   //   return;
-//   // }
-
-//   formData.append("procedimiento", procedimiento);
-//   // Realizar la solicitud a PHP mediante AJAX
-//   const xhttp = new XMLHttpRequest();
-//   xhttp.onreadystatechange = function () {
-//     if (this.readyState === 4 && this.status === 200) {
-//       // La respuesta desde PHP (opcional)
-//       console.log(this.responseText);
-//     }
-//   };
-//   xhttp.open("POST", "./php/server/Paquetes/apis_paquetes.php", true);
-//   xhttp.send(formData);
-// }
-
 function enviarFormularioNuevoPaquete() {
   console.log("Entro en la funcion");
   const cliente = document.querySelector(".combo-cliente").value;
@@ -65,6 +38,7 @@ function enviarFormularioNuevoPaquete() {
       }
     })
     .then(responseText => {
+      console.log(responseText);
       // La respuesta desde PHP (opcional)
       Swal.fire({
         icon: "success",
@@ -77,28 +51,6 @@ function enviarFormularioNuevoPaquete() {
       console.error("Error:", error);
     });
 }
-
-// function enviarFormularioNuevoPaquete() {
-//   const cliente = document.querySelector(".cliente-paquete").value;
-//   const selectedComboCliente = document.querySelector(".combo-cliente").value;
-//   const paquete = document.querySelector(".combo-opcion-paquete").value;
-//   const tecnico = document.querySelector(".combo-tecnico-asignar").value;
-//   const fechaInicio = document.querySelector(".fecha-inicio").value;
-//   const fechaFinal = document.querySelector(".fecha-final").value;
-
-//   console.log("Cliente:", cliente);
-//   console.log("Combo Cliente:", selectedComboCliente);
-//   console.log("Paquete:", paquete);
-//   console.log("Técnico:", tecnico);
-//   console.log("Fecha de inicio:", fechaInicio);
-//   console.log("Fecha final:", fechaFinal);
-// }
-
-// document.getElementById("agregarNuevoPaquete").onsubmit = function (event) {
-//   event.preventDefault();
-//   enviarFormulario("agregarNuevoPaquete", "spInsertarContratoPaquete");
-//   LimpiarInputs();
-// };
 
 function cargarComboBoxPaquete() {
   const comboBox = document.querySelector(".combo-opcion-paquete");
@@ -242,10 +194,58 @@ function cargarComboBoxCliente() {
     });
 }
 
+function LlenarTablaEstadoPaquetes() {
+  const tableBody = document.querySelector(".tbody-estado-paquetes");
+  const formData = new FormData();
+
+  formData.append("procedimiento", "vista");
+
+  // Realizar la solicitud a PHP mediante Fetch API
+  fetch("./php/server/Paquetes/apis_paquetes.php?getDataEstadoPaquetes=true", {
+    method: "POST",
+    body: formData,
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      // Limpiar el contenido existente de la tabla
+      tableBody.innerHTML = "";
+
+      data.forEach(item => {
+        const row = document.createElement("tr");
+        row.setAttribute("data-id", item.ContratoID);
+        row.innerHTML = `
+          <td class="py-3">${item.ContratoID}</td>
+          <td class="py-3">${item.Cliente}</td>
+          <td class="py-3">${item.Contrato}</td>
+          <td class="py-3">
+            <span class="bg-warning-subtle text-emphasis-warning rounded px-1">${item.Estado}</span>
+          </td>
+          <td class="py-3">
+            <a href="./contratosdetalles.php" class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></a>
+            <button class="btn btn-danger btn-sm eliminar-btn" data-id="${item.ContratoID}">
+              <i class="bx bx-eraser"></i>
+            </button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    })
+    .catch(error => {
+      console.error("Fetch error:", error);
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   cargarComboBoxTecnico();
   cargarComboBoxPaquete();
   cargarComboBoxCliente();
+  LlenarTablaEstadoPaquetes();
   const searchInput = document.getElementById("searchCliente");
   searchInput.addEventListener("input", cargarComboBoxCliente);
 });

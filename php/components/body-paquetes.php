@@ -101,7 +101,7 @@
                     <th scope="col">Accion</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody class="tbody-estado-paquetes">
                   <tr>
                     <td class="py-3">1</td>
                     <td class="py-3">Ebay</td>
