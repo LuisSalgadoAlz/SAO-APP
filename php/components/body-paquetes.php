@@ -197,62 +197,62 @@
 </div>
 
 <!-- Formulario del modal -->
-<form id="agregarNuevoPaquete">
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Creacion - Contrato de paquete</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Cliente</label>
-            <div class="d-flex gap-1 mb-2">
-              <input type="text" class="form-control form-control-sm cliente-paquete" id="searchCliente"
-                placeholder="Juan Perez" name="cliente">
-              <button class="btn btn-secondary btn-sm "><i class='bx bx-message-square-add'></i></button>
-            </div>
-            <div class="d-flex gap-1 mb-2">
-              <select class="form-select form-select-sm combo-cliente" aria-label=".form-select-sm example"
-                name="combo-cliente">
-                <option selected>Selecione una opcion</option>
-              </select>
-              <button class="btn btn-secondary btn-sm "><i class='bx bx-book-bookmark'></i></i></button>
-            </div>
+<!-- <form id="agregarNuevoPaquete"> -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Creacion - Contrato de paquete</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Cliente</label>
+          <div class="d-flex gap-1 mb-2">
+            <input type="text" class="form-control form-control-sm cliente-paquete" id="searchCliente"
+              placeholder="Juan Perez" name="cliente">
+            <button class="btn btn-secondary btn-sm "><i class='bx bx-message-square-add'></i></button>
           </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Paquete</label>
-            <select class="form-select form-select-sm combo-opcion-paquete" aria-label=".form-select-sm example"
-              name="paquete">
+          <div class="d-flex gap-1 mb-2">
+            <select class="form-select form-select-sm combo-cliente" aria-label=".form-select-sm example"
+              name="combo-cliente">
               <option selected>Selecione una opcion</option>
             </select>
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Tecnico a asignar</label>
-            <select class="form-select form-select-sm combo-tecnico-asignar" aria-label=".form-select-sm example"
-              name="tecnico">
-              <option selected>Selecione una opcion</option>
-            </select>
-          </div>
-          <div class="mb-3 row">
-            <div class="col">
-              <label for="exampleFormControlInput1" class="form-label">Fecha inicio</label>
-              <input type="date" class="form-control form-control-sm fecha-inicio" id="exampleFormControlInput1"
-                name="fechaInicio">
-            </div>
-            <div class="col">
-              <label for="exampleFormControlInput1" class="form-label">Fecha final</label>
-              <input type="date" class="form-control form-control-sm fecha-final" id="exampleFormControlInput1"
-                name="fechaFinal">
-            </div>
+            <button class="btn btn-secondary btn-sm "><i class='bx bx-book-bookmark'></i></i></button>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-primary">Finalizar</button>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Paquete</label>
+          <select class="form-select form-select-sm combo-opcion-paquete" aria-label=".form-select-sm example"
+            name="paquete">
+            <option selected>Selecione una opcion</option>
+          </select>
         </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Tecnico a asignar</label>
+          <select class="form-select form-select-sm combo-tecnico-asignar" aria-label=".form-select-sm example"
+            name="tecnico">
+            <option selected>Selecione una opcion</option>
+          </select>
+        </div>
+        <div class="mb-3 row">
+          <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Fecha inicio</label>
+            <input type="date" class="form-control form-control-sm fecha-inicio" id="exampleFormControlInput1"
+              name="fechaInicio">
+          </div>
+          <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Fecha final</label>
+            <input type="date" class="form-control form-control-sm fecha-final" id="exampleFormControlInput1"
+              name="fechaFinal">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="enviar-formulario-paquetes">Finalizar</button>
       </div>
     </div>
   </div>
-</form>
+</div>
+<!-- </form> -->
