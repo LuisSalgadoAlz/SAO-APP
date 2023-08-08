@@ -27,8 +27,16 @@
         <div class="row pt-3">
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Cliente</label>
-            <input type="text" class="form-control form-control-sm cliente-contrato" id="exampleFormControlInput1"
+            <input type="text" class="form-control form-control-sm cliente-contrato" id="searchCliente"
               placeholder="Juan Perez">
+          </div>
+
+          <div class="d-flex gap-1 mb-2">
+            <select class="form-select form-select-sm combo-cliente" aria-label=".form-select-sm example"
+              name="combo-cliente">
+              <option selected>Selecione una opcion</option>
+            </select>
+            <!-- <button class="btn btn-secondary btn-sm "><i class='bx bx-book-bookmark'></i></i></button> -->
           </div>
 
           <div class="mb-3">
@@ -68,7 +76,7 @@
             <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Cancelar</button>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-primary w-100">Guardar</button>
+            <button type="submit" class="btn btn-primary w-100 btn-actualizar-contrato">Guardar</button>
           </div>
         </div>
       </div>
@@ -92,7 +100,7 @@
                   <th scope="col">Accion</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="tbody-articulos-detalles">
                 <tr>
                   <td class="py-3">1</td>
                   <td class="py-3">Mouse</td>
@@ -134,22 +142,20 @@
       <div class="modal-body">
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Articulo</label>
-          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+          <select class="form-select form-select-sm combo-articulo" aria-label=".form-select-sm example">
             <option selected>Selecione una opcion</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
           </select>
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Cantidad</label>
-          <input type="number" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Perez">
+          <input type="number" class="form-control form-control-sm cantidadArticulo" id="exampleFormControlInput1"
+            placeholder="0">
         </div>
         <!-- El precio lo sacas de la tabla articulo -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Finalizar</button>
+        <button type="submit" class="btn btn-primary enviar-form-Articulo">Finalizar</button>
       </div>
     </div>
   </div>

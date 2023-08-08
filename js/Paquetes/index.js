@@ -1,5 +1,4 @@
 function enviarFormularioNuevoPaquete() {
-  console.log("Entro en la funcion");
   const cliente = document.querySelector(".combo-cliente").value;
   const paquete = document.querySelector(".combo-opcion-paquete").value;
   const tecnico = document.querySelector(".combo-tecnico-asignar").value;
@@ -105,45 +104,6 @@ function cargarComboBoxTecnico() {
   xhrComboData.open(
     "POST",
     "./php/server/Paquetes/apis_paquetes.php?getComboDataTecnico=true",
-    true
-  );
-  xhrComboData.send(formData);
-}
-
-function cargarComboBoxCliente() {
-  const comboBox = document.querySelector(".combo-cliente");
-  const searchInput = document.getElementById("searchCliente"); // Obtener el elemento de búsqueda
-
-  const formData = new FormData();
-  formData.append("procedimiento", "vista");
-
-  const xhrComboData = new XMLHttpRequest();
-  xhrComboData.onreadystatechange = function () {
-    if (xhrComboData.readyState === 4 && xhrComboData.status === 200) {
-      const data = JSON.parse(xhrComboData.responseText);
-
-      // Limpiar opciones anteriores del combo box
-      comboBox.innerHTML = "";
-
-      // Filtrar los datos según la búsqueda
-      const searchTerm = searchInput.value.toLowerCase();
-      const filteredData = data.filter(item =>
-        item.Nombre.toLowerCase().includes(searchTerm)
-      );
-
-      // Agregar las opciones filtradas al combo box
-      for (let i = 0; i < filteredData.length; i++) {
-        const option = document.createElement("option");
-        option.value = filteredData[i].ID_cliente;
-        option.text = filteredData[i].Nombre;
-        comboBox.add(option);
-      }
-    }
-  };
-
-  xhrComboData.open(
-    "POST",
-    "./php/server/Paquetes/apis_paquetes.php?getComboDataCliente=true",
     true
   );
   xhrComboData.send(formData);

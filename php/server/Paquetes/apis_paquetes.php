@@ -39,6 +39,52 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Devuelve los datos JSON
         echo $jsonData;
       }
+
+      if ($nombreProcedimiento === "spEliminarArticuloContratoDetalle") {
+        $ArticuloID = $requestData->id;
+        $contratoID = $requestData->contratoID;
+
+        $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$ArticuloID, $contratoID]);
+
+        if ($resultado) {
+          $response = array('success' => true, 'message' => 'Articulo eliminado exitosamente.');
+        } else {
+          $response = array('success' => false, 'message' => 'Error al eliminar el articulo.');
+        }
+
+        header("Content-Type: application/json");
+        echo json_encode($response);
+      }
+
+      if ($nombreProcedimiento === "spActualizarContratosDetalles") {
+        $contratoID = $requestData->contratoID;
+        $articuloID = $requestData->articuloID;
+        $cantidad = $requestData->cantidad;
+
+        // Verificar si el servicioID ya existe en la base de datos
+        $stmt = $conexion->ejecutarProcedimientosAlmacenado("spVerificarExistenciaArticulo", array($articuloID));
+        $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+
+        if ($result["Result"] === 1) {
+          echo "El articuloID ya existe en la base de datos.";
+        } else {
+          // El servicioID no existe, proceder con la actualización
+          $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$contratoID, $articuloID, $cantidad]);
+          echo "Actualización exitosa.";
+        }
+      }
+
+      if ($nombreProcedimiento === "spActualizarDatosContrato") {
+        $contratoID = $requestData->contratoID;
+        $clienteID = $requestData->clienteID;
+        $paqueteID = $requestData->paqueteID;
+        $tecnicoID = $requestData->tecnicoID;
+        $fechaInicio = $requestData->fechaInicio;
+        $fechaFinal = $requestData->fechaFinal;
+        $estado = $requestData->estado;
+
+        $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$contratoID, $clienteID, $paqueteID, $tecnicoID, $fechaInicio, $fechaFinal, $estado]);
+      }
     }
   } else {
     $nombreProcedimiento = $_POST['procedimiento'];
@@ -62,6 +108,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (isset($_GET['getComboDataTecnico']) && $_GET['getComboDataTecnico'] === 'true') {
       $sql = "select * from vTecnico";
+      $result = $conexion->query($sql);
+
+      // Almacena los datos en un array
+      $data = array();
+      while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+
+      // Convierte los datos a formato JSON
+      $jsonData = json_encode($data);
+
+      // Devuelve los datos JSON
+      echo $jsonData;
+    }
+
+    if (isset($_GET['getComboDataArticulo']) && $_GET['getComboDataArticulo'] === 'true') {
+      $sql = "select * from vComboArticulos";
       $result = $conexion->query($sql);
 
       // Almacena los datos en un array
@@ -146,22 +209,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       echo $resultadoJSON;
     }
 
-    // if (isset($_GET['getComboDataCliente']) && $_GET['getComboDataCliente'] === 'true') {
-    //   $sql = "select * from vClientesCombo";
-    //   $result = $conexion->query($sql);
+    if ($nombreProcedimiento === "spMostrarContratoDetalleArticulos") {
+      $contratoID = $_POST['contratoID'];
+      $resultado = $conexion->ejecutarProcedimientosAlmacenado($nombreProcedimiento, [$contratoID]);
 
-    //   // Almacena los datos en un array
-    //   $data = array();
-    //   while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-    //     $data[] = $row;
-    //   }
+      // Obtener los resultados del objeto de declaración
+      $data = [];
+      while ($row = sqlsrv_fetch_array($resultado, SQLSRV_FETCH_ASSOC)) {
+        $data[] = $row;
+      }
 
-    //   // Convierte los datos a formato JSON
-    //   $jsonData = json_encode($data);
+      // Convertir los resultados a formato JSON
+      $resultadoJSON = json_encode($data);
 
-    //   // Devuelve los datos JSON
-    //   echo $jsonData;
-    // }
+      // Establecer encabezados para indicar que la respuesta es en formato JSON
+      header('Content-Type: application/json');
+
+      // Imprimir el resultado en formato JSON
+      echo $resultadoJSON;
+    }
   }
 } else {
   echo "Método de solicitud no válido.";

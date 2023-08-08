@@ -121,8 +121,6 @@ function enviarFormularioServicios() {
 }
 
 function enviarFormularioPaquetes(procedimiento) {
-  console.log("entro aqui");
-
   const nombrePaquete = document.querySelector(".nombre-paquete").value;
   const horasEstablecidas = document.querySelector(".horasEstablecidas").value;
   const precioTotal = document.querySelector(".precioTotal").value;
