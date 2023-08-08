@@ -3,14 +3,22 @@
   include('header.php');
   ?>
   <div class="row mt-3">
-    <div class="col-9 p-2">
+    <div class="col-12 p-2">
       <div class="col bg-white rounded p-4 overflow-auto table-scroll" style="height: 83vh;max-height: 83vh; ">
         <div class="container">
           <div class="row mt-3">
             <div class="col-6">
               <span class="fw-bold fs-4">Clientes</span>
             </div>
-            <div class="col-6">
+            <div class="col-3">
+              <div class="input-group mb-3">
+                <button class="btn d-flex w-100 gap-2 align-items-center justify-content-center agregar-paquete" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <i class='bx bx-message-square-add'></i>
+                  <span class="subtitle-contratos">Nuevo cliente</span>
+                </button>
+              </div>
+            </div>
+            <div class="col-3">
               <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Recipient's username"
                   aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -41,47 +49,44 @@
         </div>
       </div>
     </div>
-    <div class="col-3 p-2">
-      <div class="col bg-white rounded p-4 " style="height: 83vh;max-height: 83vh;">
-        <!-- Preview de clientes -->
-        <div class="container">
-          <div class="row mt-3">
-            <div class="col">
-              <span class="fw-bold">Nombre: Cliente 1</span>
-              <hr>
-            </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Creacion - Nuevo Cliente</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 row">
+          <div class="col">
+            <label for="nombreCliente" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombreCliente" placeholder="Pedro">
           </div>
-          <div class="row mt-3">
-            <div class="col">
-              <img src="./img/avatar.svg" class="img-fluid" alt="">
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <span>Direcion: Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <span>Correo: example@gmail.com</span>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <span>Telefono: +504 95959500</span>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <span>Cantidad de contratos: 0</span>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <button class="btn btn-success btn-sm ms-6 w-100">activo</button>
-            </div>
+          <div class="col">
+            <label for="apellidoCliente" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellidoCliente" placeholder="Perez">
           </div>
         </div>
+        <div class="mb-3">
+          <label for="direccionCliente" class="form-label">Direccion</label>
+          <textarea class="form-control" id="direccionCliente" rows="2"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="correoCliente" class="form-label">Correo Electronico</label>
+          <input type="email" class="form-control" id="correoCliente" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+          <label for="telefonoCliente" class="form-label">Telefono</label>
+          <input type="text" class="form-control" id="telefonoCliente" placeholder="9355-5555">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="enviar-formulario-paquetes">Finalizar</button>
       </div>
     </div>
   </div>
