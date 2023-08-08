@@ -64,24 +64,24 @@
         <div class="mb-3 row">
           <div class="col">
             <label for="nombreCliente" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombreCliente" placeholder="Pedro">
+            <input type="text" class="form-control form-control-sm" id="nombreCliente" placeholder="Pedro">
           </div>
           <div class="col">
             <label for="apellidoCliente" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="apellidoCliente" placeholder="Perez">
+            <input type="text" class="form-control form-control-sm" id="apellidoCliente" placeholder="Perez">
           </div>
         </div>
         <div class="mb-3">
           <label for="direccionCliente" class="form-label">Direccion</label>
-          <textarea class="form-control" id="direccionCliente" rows="2"></textarea>
+          <textarea class="form-control form-control-sm" id="direccionCliente" rows="2"></textarea>
         </div>
         <div class="mb-3">
           <label for="correoCliente" class="form-label">Correo Electronico</label>
-          <input type="email" class="form-control" id="correoCliente" placeholder="name@example.com">
+          <input type="email" class="form-control form-control-sm" id="correoCliente" placeholder="name@example.com">
         </div>
         <div class="mb-3">
           <label for="telefonoCliente" class="form-label">Telefono</label>
-          <input type="text" class="form-control" id="telefonoCliente" placeholder="9355-5555">
+          <input type="text" class="form-control form-control-sm" id="telefonoCliente" placeholder="9355-5555">
         </div>
       </div>
       <div class="modal-footer">

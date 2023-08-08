@@ -28,7 +28,7 @@
       </a>
     </li>
     <li class="menu-item px-3 d-flex">
-      <a href="">
+      <a href="./inventario.php">
         <i class='bx bx-receipt me-2'></i>
         Inventario
       </a>
