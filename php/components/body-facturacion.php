@@ -3,7 +3,7 @@
       include('header.php');
   ?>
   <div class="row mt-2">
-    <div class="col-4 p-2">
+    <div class="col-6 p-2">
       <div class="container header bg-white rounded p-2 shadow-sm">
         <div class="row">
           <div class="col-6 d-flex justify-content-center align-items-center flex-column border-end">
@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4 p-2">
+    <div class="col-6 p-2">
       <div class="container header bg-white rounded p-2 shadow-sm">
         <div class="row">
           <div class="col-6 d-flex justify-content-center align-items-center flex-column border-end">
@@ -43,27 +43,6 @@
         </div>
       </div>
     </div>
-    <div class="col-4 p-2">
-      <div class="container header bg-white rounded p-2 shadow-sm">
-        <div class="row">
-          <div class="col-6 d-flex justify-content-center align-items-center flex-column border-end">
-            <h6 class="fs-5">
-              <i class='bx bx-credit-card-front'></i>
-            </h6>
-            <span class="fw-bold mb-1">14</span>
-            <span class="subtitle-contratos">Facturaciones</span>
-          </div>
-          <div class="col-6 d-flex justify-content-center align-items-center flex-column border-end">
-            <h6 class="fs-5">
-              <i class='bx bxs-user-check'></i>
-            </h6>
-            <span class="fw-bold mb-1">25</span>
-            <span class="subtitle-contratos">Total clientes</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
   <div class="row mt-2">
     <div class="col-6 p-2">
