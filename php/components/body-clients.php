@@ -12,7 +12,8 @@
             </div>
             <div class="col-3">
               <div class="input-group mb-3">
-                <button class="btn d-flex w-100 gap-2 align-items-center justify-content-center agregar-paquete" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button class="btn d-flex w-100 gap-2 align-items-center justify-content-center" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal">
                   <i class='bx bx-message-square-add'></i>
                   <span class="subtitle-contratos">Nuevo cliente</span>
                 </button>
@@ -53,7 +54,8 @@
 </div>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade editarClientesModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -86,7 +88,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary" id="enviar-formulario-paquetes">Finalizar</button>
+        <button type="submit" class="btn btn-primary" id="ingresar-cliente">Finalizar</button>
       </div>
     </div>
   </div>
