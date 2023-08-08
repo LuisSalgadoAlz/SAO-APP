@@ -16,6 +16,12 @@
       </a>
     </li>
     <li class="menu-item px-3 d-flex">
+      <a href="./compraServicios.php">
+        <i class='bx bx-clipboard me-2'></i>
+        Servicios
+      </a>
+    </li>
+    <li class="menu-item px-3 d-flex">
       <a href="./tecnicos.php">
         <i class='bx bx-wrench me-2'></i>
         Tecnicos
@@ -36,7 +42,7 @@
     <li class="menu-item px-3 d-flex">
       <a href="./servicios.php">
         <i class='bx bx-git-repo-forked me-2'></i>
-        Servicios
+        Paquetes
       </a>
     </li>
     <li class="menu-item px-3 d-flex">
