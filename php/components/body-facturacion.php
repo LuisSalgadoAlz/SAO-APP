@@ -83,7 +83,7 @@
           </div>
         </div>
         <div class="row p-4">
-          <div class="col overflow-auto table-scroll" style="height: 52vh">
+          <div class="col overflow-auto table-scroll" style="height: 50vh">
             <table class="table table-hover bordered">
               <thead class="table-light">
                 <tr>
@@ -129,7 +129,7 @@
           </div>
         </div>
         <div class="row p-4">
-          <div class="col overflow-auto table-scroll" style="height: 52vh">
+          <div class="col overflow-auto table-scroll" style="height: 50vh">
             <table class="table table-hover bordered">
               <thead class="table-light">
                 <tr>

@@ -30,13 +30,10 @@
               </div>
             </div>
           </div>
-          <div class="col-4">
-
-          </div>
         </div>
         <div class="row">
           <div class="col px-5 mt-4">
-            <table class="table">
+            <table class="table table-hover">
               <thead>
                 <tr>
                   <th>Descripcion</th>
@@ -55,29 +52,74 @@
                   <td>199 Lps</td>
                   <td>1300 Lps</td>
                 </tr>
-                <tr class="mt-3">
+                <tr data-toggle="collapse" data-target="#productosUsados" aria-expanded="false" aria-controls="productosUsados">
+                  <td>Productos usados</td>
+                  <td>120Lps</td>
+                  <td>1200Lps</td>
+                </tr>
+                <tr id="productosUsados" class="collapse">
                   <td colspan="3">
-                    <table class="table">
+                    <table class="table table-borderless">
                       <thead>
-                        <th>Articulo</th>
-                        <th>Cantidad</th>
-                        <th>ISV</th>
-                        <th>Precio</th>
+                        <tr>
+                          <td scope="col" class="text-center">Articulo</td>
+                          <td scope="col" class="text-center">Cantidad</td>
+                          <td scope="col" class="text-center">ISV</td>
+                          <td scope="col" class="text-center">Costo unitario</td>
+                        </tr>
                       </thead>
                       <tbody>
-                        <td>RAM</td>
-                        <td>3</td>
-                        <td>15</td>
-                        <td>100</td>
+                        <tr>
+                          <td class="text-center">Ram</td>
+                          <td class="text-center">2</td>
+                          <td class="text-center">15</td>
+                          <td class="text-center">100</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center">Ram</td>
+                          <td class="text-center">2</td>
+                          <td class="text-center">15</td>
+                          <td class="text-center">100</td>
+                        </tr>
                       </tbody>
                     </table>
                   </td>
                 </tr>
+                <tr>
+                  <td colspan="1"></td>
+                  <td>SubTotal:</td>
+                  <td>1200 Lps</td>
+                </tr>
+                <tr>
+                  <td colspan="1"></td>
+                  <td>ISV:</td>
+                  <td>120 Lps</td>
+                </tr>
+                <tr>
+                  <td colspan="1"  class="bg-warning-subtle"></td>
+                  <td class="bg-warning-subtle">Total:</td>
+                  <td class="bg-warning-subtle">1320 Lps</td>
+                </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col p-1">
+            <div class="header col-12 bg-white rounded py-1 px-3 d-flex justify-content-center align-items-center">
+              <footer class="footer text-center py-2">
+                  <span>&copy; 2023 - Todos los derechos reservados foraneos team</span>
+              </footer>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+    document.querySelector('[data-target="#productosUsados"]').addEventListener('click', function () {
+        document.querySelector('#productosUsados').classList.toggle('show');
+    });
+</script>
