@@ -56,4 +56,20 @@ if (isset($_GET['getComboDataHorario']) && $_GET['getComboDataHorario'] === 'tru
   // Devuelve los datos JSON
   echo $jsonData;
 }
+if (isset($_GET['getDataTecnico']) && $_GET['getDataTecnico'] === 'true') {
+  $sql = "select * from vTecnicos";
+  $result = $conexion->query($sql);
+
+  // Almacena los datos en un array
+  $data = array();
+  while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+    $data[] = $row;
+  }
+
+  // Convierte los datos a formato JSON
+  $jsonData = json_encode($data);
+
+  // Devuelve los datos JSON
+  echo $jsonData;
+}
 ?>

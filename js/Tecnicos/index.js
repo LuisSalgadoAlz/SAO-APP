@@ -115,7 +115,56 @@ function LimpiarInputs() {
   horario.value = "Selecione una opcion";
 }
 
+function llenarTabla() {
+  const tableBody = document.querySelector(".tbody-tecnicos");
+  const formData = new FormData();
+  formData.append("procedimiento", "vista");
+
+  // Realizar la petición Fetch para obtener los datos del combo box
+  fetch("./php/server/Tecnicos/apis_tecnicos.php?getDataTecnico=true", {
+    method: "POST",
+    body: formData,
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then(data => {
+      tableBody.innerHTML = "";
+      data.forEach(item => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+        <td class="py-3">${item.ID_tecnico}</td>
+        <td class="py-3">${item.Nombre}</td>
+        <td class="py-3">${item.Apellido}</td>
+        <td class="py-3">${item.Estado === 0 ? "ocupado" : "Libre"}</td>
+        <td class="py-3">${item.Contratos}</td>
+        <td class="py-3">${item.Servicios}</td>
+        <td class="py-3">
+          <button class="btn btn-warning btn-sm btn-editar" data-id=${
+            item.ID_tecnico
+          } onclick="abrirModal(${
+          item.ID_tecnico
+        })"><i class="bx bx-edit"></i></button>
+          <button class="btn btn-danger btn-sm eliminar-btn" data-id=${
+            item.ID_tecnico
+          } onclick="EliminarCliente(${
+          item.ID_tecnico
+        })"><i class="bx bx-eraser"></i></button>
+        </td>
+      `;
+        tableBody.appendChild(row);
+      });
+    })
+    .catch(error => {
+      console.error("Fetch error:", error);
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   cargarComboBox();
   cargarComboBoxHorario();
+  llenarTabla();
 });

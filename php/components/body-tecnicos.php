@@ -71,63 +71,7 @@
                     <th scope="col">Accion</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">San</td>
-                    <td class="py-3">Peter</td>
-                    <td class="py-3">
-                      <span class="bg-success-subtle text-emphasis-success rounded px-1">Ocupado</span>
-                    </td>
-                    <td class="py-3">3</td>
-                    <td class="py-3">12</td>
-                    <td class="py-3">
-                      <a href="./tecnicos-edits.php" class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></a>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">San</td>
-                    <td class="py-3">Peter</td>
-                    <td class="py-3">
-                      <span class="bg-success-subtle text-emphasis-success rounded px-1">Ocupado</span>
-                    </td>
-                    <td class="py-3">3</td>
-                    <td class="py-3">12</td>
-                    <td class="py-3">
-                      <a href="./tecnicos-edits.php" class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></a>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">San</td>
-                    <td class="py-3">Peter</td>
-                    <td class="py-3">
-                      <span class="bg-success-subtle text-emphasis-success rounded px-1">Ocupado</span>
-                    </td>
-                    <td class="py-3">3</td>
-                    <td class="py-3">12</td>
-                    <td class="py-3">
-                      <a href="./tecnicos-edits.php" class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></a>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">San</td>
-                    <td class="py-3">Peter</td>
-                    <td class="py-3">
-                      <span class="bg-success-subtle text-emphasis-success rounded px-1">Ocupado</span>
-                    </td>
-                    <td class="py-3">3</td>
-                    <td class="py-3">12</td>
-                    <td class="py-3">
-                      <a href="./tecnicos-edits.php" class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></a>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
+                <tbody class="tbody-tecnicos">
                   <tr>
                     <td class="py-3">1</td>
                     <td class="py-3">San</td>
