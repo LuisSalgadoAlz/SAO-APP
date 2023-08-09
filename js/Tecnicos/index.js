@@ -21,8 +21,8 @@ function enviarFormulario(formularioId, procedimiento) {
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
-      // La respuesta desde PHP (opcional)
-      //console.log(this.responseText);
+      LlenarTabla();
+      $('#tecnicosModal').modal('hide');
     }
   };
   xhttp.open("POST", "./php/server/Tecnicos/apis_tecnicos.php", true);
@@ -32,7 +32,6 @@ function enviarFormulario(formularioId, procedimiento) {
 document.getElementById("form-tecnico-nuevo").onsubmit = function (event) {
   event.preventDefault();
   enviarFormulario("form-tecnico-nuevo", "spInsertarNuevoTecnico");
-  LlenarTabla();
   LimpiarInputs();
 };
 
