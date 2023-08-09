@@ -23,6 +23,21 @@ if ($nombreProcedimiento === "spInsertarNuevoTecnico") {
   $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$nombre, $apellido, $Area_de_especializacion, $Fecha_de_nacimiento, $Fecha_de_contratacion, $Salario, $Horario]);
 }
 
+if ($nombreProcedimiento === "spEliminarTecnico") {
+  $id = $_POST['id'];
+  $resultado = $conexion->ejecutarProcedimientoAlmacenado($nombreProcedimiento, [$id]);
+
+  if ($resultado) {
+    $response = array('success' => true, 'message' => 'Tecnico eliminado exitosamente.');
+  } else {
+    $response = array('success' => false, 'message' => 'Error al eliminar el tecnico.');
+  }
+
+  // Devolver la respuesta en formato JSON
+  header('Content-Type: application/json');
+  echo json_encode($response);
+}
+
 if (isset($_GET['getComboData']) && $_GET['getComboData'] === 'true') {
   $sql = "select * from vAreaEspecializacion";
   $result = $conexion->query($sql);
@@ -72,4 +87,5 @@ if (isset($_GET['getDataTecnico']) && $_GET['getDataTecnico'] === 'true') {
   // Devuelve los datos JSON
   echo $jsonData;
 }
+
 ?>
