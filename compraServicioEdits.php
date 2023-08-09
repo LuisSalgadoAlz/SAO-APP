@@ -20,16 +20,16 @@
       ?>
       <div class="col-10 body-container overflow-auto">
         <?php
-        include('./php/components/body-inventario.php');
-        ?>
+        include('./php/components/body-compraServiciosEdits.php')
+          ?>
       </div>
     </div>
   </div>
-  <script src="./js/graph.js"></script>
+  <script src="./js/graph-packages.js"></script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <script src="./js/sweetalert2.min.js"></script>
-<script src="./js/Inventario/index.js"></script>
+<script src="./js/Paquetes/index.js"></script>
 
 </html>

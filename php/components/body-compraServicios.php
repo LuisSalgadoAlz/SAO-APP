@@ -72,7 +72,7 @@
                     <td class="py-3">1200 Lps</td>
                     <td class="py-3">Pendiente de pago</td>
                     <td class="py-3">
-                      <button class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></button>
+                      <a href="./compraServicioEdits.php" class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></a>
                       <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
                     </td>
                   </tr>
@@ -181,11 +181,11 @@
             <option selected>Selecione una opcion</option>
           </select>
         </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary" id="enviar-formulario-paquetes">Finalizar</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="enviar-formulario-paquetes">Finalizar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- </form> -->
+  <!-- </form> -->
