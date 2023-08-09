@@ -39,7 +39,7 @@
   </div>
   <div class="row mt-2">
     <div class="col-8 p-2">
-      <div class="header d-f bg-white rounded p-4 shadow-sm table-scroll overflow-auto" style="height: 67vh;">
+      <div class="header d-f bg-white rounded p-4 shadow-sm table-scroll overflow-auto">
         <div class="container">
           <div class="row mb-3">
             <div class="col-4">
@@ -58,7 +58,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12 overflow-auto">
+            <div class="col-12 table-scroll overflow-auto" style="height: 54vh;">
               <table class="table table-hover bordered">
                 <thead class="table-light">
                   <tr>
@@ -72,20 +72,6 @@
                   </tr>
                 </thead>
                 <tbody class="tbody-tecnicos">
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">San</td>
-                    <td class="py-3">Peter</td>
-                    <td class="py-3">
-                      <span class="bg-success-subtle text-emphasis-success rounded px-1">Ocupado</span>
-                    </td>
-                    <td class="py-3">3</td>
-                    <td class="py-3">12</td>
-                    <td class="py-3">
-                      <a href="./tecnicos-edits.php" class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></a>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
                 </tbody>
               </table>
             </div>

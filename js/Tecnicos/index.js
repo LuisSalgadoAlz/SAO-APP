@@ -32,6 +32,7 @@ function enviarFormulario(formularioId, procedimiento) {
 document.getElementById("form-tecnico-nuevo").onsubmit = function (event) {
   event.preventDefault();
   enviarFormulario("form-tecnico-nuevo", "spInsertarNuevoTecnico");
+  LlenarTabla();
   LimpiarInputs();
 };
 
@@ -115,12 +116,13 @@ function LimpiarInputs() {
   horario.value = "Selecione una opcion";
 }
 
-function llenarTabla() {
+function LlenarTabla() {
   const tableBody = document.querySelector(".tbody-tecnicos");
   const formData = new FormData();
+
   formData.append("procedimiento", "vista");
 
-  // Realizar la petición Fetch para obtener los datos del combo box
+  // Realizar la solicitud a PHP mediante Fetch API
   fetch("./php/server/Tecnicos/apis_tecnicos.php?getDataTecnico=true", {
     method: "POST",
     body: formData,
@@ -132,30 +134,59 @@ function llenarTabla() {
       return response.json();
     })
     .then(data => {
-      tableBody.innerHTML = "";
       data.forEach(item => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-        <td class="py-3">${item.ID_tecnico}</td>
-        <td class="py-3">${item.Nombre}</td>
-        <td class="py-3">${item.Apellido}</td>
-        <td class="py-3">${item.Estado === 0 ? "ocupado" : "Libre"}</td>
-        <td class="py-3">${item.Contratos}</td>
-        <td class="py-3">${item.Servicios}</td>
-        <td class="py-3">
-          <button class="btn btn-warning btn-sm btn-editar" data-id=${
-            item.ID_tecnico
-          } onclick="abrirModal(${
-          item.ID_tecnico
-        })"><i class="bx bx-edit"></i></button>
-          <button class="btn btn-danger btn-sm eliminar-btn" data-id=${
-            item.ID_tecnico
-          } onclick="EliminarCliente(${
-          item.ID_tecnico
-        })"><i class="bx bx-eraser"></i></button>
-        </td>
-      `;
-        tableBody.appendChild(row);
+        const existingRow = tableBody.querySelector(
+          `tr[data-id="${item.ID_tecnico}"]`
+        );
+
+        if (existingRow) {
+          // Actualizar la fila existente
+          existingRow.innerHTML = `
+          <td class="py-3">${item.ID_tecnico}</td>
+          <td class="py-3">${item.Nombre}</td>
+          <td class="py-3">${item.Apellido}</td>
+          <td class="py-3">
+            <span class="bg-warning-subtle text-emphasis-warning rounded px-1">${item.Estado === 0 ? 'Ocupado' : 'Libre'}</span>
+          </td>
+          <td class="py-3">${item.Contratos}</td>
+          <td class="py-3">${item.Servicios}</td>
+          <td class="py-3">
+            <a href="#" class="btn btn-warning btn-sm editar-btn" data-id="${item.ID_tecnico}"><i class='bx bx-edit'></i></a>
+            <button class="btn btn-danger btn-sm eliminar-btn" data-id="${item.ID_tecnico}">
+              <i class="bx bx-eraser"></i>
+            </button>
+          </td>
+        `;
+        } else {
+          const row = document.createElement("tr");
+          row.setAttribute("data-id", item.ID_tecnico);
+          row.innerHTML = `
+          <td class="py-3">${item.ID_tecnico}</td>
+          <td class="py-3">${item.Nombre}</td>
+          <td class="py-3">${item.Apellido}</td>
+          <td class="py-3">
+            <span class="bg-warning-subtle text-emphasis-warning rounded px-1">${item.Estado === 0 ? 'Ocupado' : 'Libre'}</span>
+          </td>
+          <td class="py-3">${item.Contratos}</td>
+          <td class="py-3">${item.Servicios}</td>
+          <td class="py-3">
+            <a href="#" class="btn btn-warning btn-sm editar-btn" data-id="${item.ID_tecnico}"><i class='bx bx-edit'></i></a>
+            <button class="btn btn-danger btn-sm eliminar-btn" data-id="${item.ID_tecnico}">
+              <i class="bx bx-eraser"></i>
+            </button>
+          </td>
+          `;
+
+          tableBody.appendChild(row);
+        }
+      });
+      const editButtons = document.querySelectorAll(".editar-btn");
+      editButtons.forEach(editButton => {
+        editButton.addEventListener("click", event => {
+          event.preventDefault();
+          const contratoID = editButton.getAttribute("data-id");
+          window.location.href = `./tecnicos-edits.php?contratoID=${contratoID}`;
+        });
       });
     })
     .catch(error => {
@@ -166,5 +197,5 @@ function llenarTabla() {
 document.addEventListener("DOMContentLoaded", () => {
   cargarComboBox();
   cargarComboBoxHorario();
-  llenarTabla();
+  LlenarTabla();
 });

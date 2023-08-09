@@ -4,7 +4,7 @@
   ?>
   <div class="row mt-3">
     <div class="col-12 p-2">
-      <div class="col bg-white rounded p-4 overflow-auto table-scroll" style="height: 83vh;max-height: 83vh; ">
+      <div class="col bg-white rounded p-4 overflow-auto table-scroll"  >
         <div class="container">
           <div class="row mt-3">
             <div class="col-6">
@@ -31,7 +31,7 @@
           </div>
           <div class="row mt-3">
             <!-- Tabla de clientes -->
-            <div class="col">
+            <div class="col overflow-auto table-scroll" style="height: 65vh;max-height: 70vh;">
               <table class="table table-sm table-hover bordered table-clientes">
                 <thead class="thead-dark">
                   <tr>
@@ -43,16 +43,6 @@
                   </tr>
                 </thead>
                 <tbody class="tbody-inventario">
-                  <tr>
-                    <td class="py-3">1</td>
-                    <td class="py-3">RAM</td>
-                    <td class="py-3">Equipos de Hardware</td>
-                    <td class="py-3">3</td>
-                    <td class="py-3">
-                      <button class="btn btn-warning btn-sm"><i class='bx bx-edit'></i></button>
-                      <button class="btn btn-danger btn-sm"><i class='bx bx-eraser'></i></button>
-                    </td>
-                  </tr>
                 </tbody>
               </table>
             </div>

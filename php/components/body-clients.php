@@ -31,7 +31,7 @@
           </div>
           <div class="row mt-3">
             <!-- Tabla de clientes -->
-            <div class="col">
+            <div class="col overflow-auto table-scroll" style="height: 65vh;max-height: 70vh;">
               <table class="table table-sm table-hover bordered table-clientes">
                 <thead class="thead-dark">
                   <tr>
