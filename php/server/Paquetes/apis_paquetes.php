@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $cantidad = $requestData->cantidad;
 
         // Verificar si el servicioID ya existe en la base de datos
-        $stmt = $conexion->ejecutarProcedimientosAlmacenado("spVerificarExistenciaArticulo", array($articuloID));
+        $stmt = $conexion->ejecutarProcedimientosAlmacenado("spVerificarExistenciaArticulo", [$articuloID, $contratoID]);
         $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
         if ($result["Result"] === 1) {

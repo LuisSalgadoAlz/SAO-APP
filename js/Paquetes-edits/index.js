@@ -17,6 +17,7 @@ function cargarComboBox() {
     .then(data => {
       // Agregar las opciones al combo box
       data.forEach(item => {
+        console.log(data);
         const option = document.createElement("option");
         option.value = item.ID_servicio; // Valor del option será el ID del producto
         option.text = item.Nombre; // Texto visible será el nombre del producto

@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       $servicio = $_POST['servicio'];
 
       // Verificar si el servicioID ya existe en la base de datos
-      $stmt = $conexion->ejecutarProcedimientosAlmacenado("spVerificarExistenciaServicio", array($servicio));
+      $stmt = $conexion->ejecutarProcedimientosAlmacenado("spVerificarExistenciaServicio", [$servicio, $paqueteID]);
       $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
       if ($result["Result"] === 1) {
